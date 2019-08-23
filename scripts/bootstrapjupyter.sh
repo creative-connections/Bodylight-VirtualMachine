@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+set -x
 # cd to desired directory
 
 DIR=`pwd`
@@ -67,9 +67,9 @@ curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo bash -
 yum -y remove nodejs
 yum -y install nodejs 
 # jupyter prov-o ssbio sos polyglot notebook
-pip install prov ssbio sos sos-notebook sos-r
-python -m sos_notebook.install
-jupyter labextension install jupyterlab-sos
+# pip install -q prov ssbio sos sos-notebook sos-r
+# python -m sos_notebook.install
+# jupyter labextension install jupyterlab-sos
 
 #link to jupyter installation
 #ln -s $DIR/$VERSION /opt/jupyter
@@ -95,7 +95,8 @@ cat <<EOF >>/var/www/html/index.html
 </body>
 </html>
 EOF
-/vagrant/scripts/jupyterinapache.sh add vagrant 8901 /jupyter /var/log/jupyter.log
+# move start after openmodelica is installed
+# /vagrant/scripts/jupyterinapache.sh add vagrant 8901 /jupyter /var/log/jupyter.log
 
 
 

@@ -78,7 +78,19 @@ function removeapacheproxy {
  #  echo to row $L2
  #  sudo sed -i "$L1,$L2 d" $HTTPD_CONF
  #fi
- fi
+ fi 
+}
+
+function removerclocal {
+  if grep -Fxq "jupyter" /etc/rc.local
+then
+    # found remove last row;
+    echo found jupyter in rc.local, deleting last row
+    sed -i '$ d' /etc/rc.local
+else
+    # code if not found
+    echo jupyter not in rc.local
+fi
 }
 
 function killjupyter {
@@ -114,6 +126,7 @@ fi
 if [ $1 == 'remove' ]; then
   killjupyter $3
   removeapacheproxy $4
+  removerclocal
   exit
 fi
 
@@ -139,14 +152,18 @@ if [ $1 == 'add' ]; then
       echo launching jupyter without logs
       #source /opt/jupyter/bin/activate py3
       sudo -u vagrant $INSTALLDIR/bin/jupyter notebook --port $3 --no-browser &
-      cat <<EOF >>/etc.rc.local
+      removerclocal
+      echo adding jupyter to rc.local 
+      cat <<EOF >>/etc/rc.local
 sudo -u vagrant $INSTALLDIR/bin/jupyter notebook --port $3 --no-browser &
 EOF
     else
       echo launching jupyter log to $5
       #source /opt/jupyter/bin/activate py3
-      sudo -u vagrant $INSTALLDIR/bin/jupyter notebook --port $3 --no-browser &
-      cat <<EOF >>/etc.rc.local
+      sudo -u vagrant $INSTALLDIR/bin/jupyter notebook --port $3 --no-browser >$5 2>&1 &
+      removerclocal
+      echo adding jupyter to rc.local 
+      cat <<EOF >>/etc/rc.local
 sudo -u vagrant $INSTALLDIR/bin/jupyter notebook --port $3 --no-browser >$5 2>&1 &
 EOF
     fi
