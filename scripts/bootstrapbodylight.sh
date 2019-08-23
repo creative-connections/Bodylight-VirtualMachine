@@ -8,13 +8,12 @@ yum -y install git
 cd /home/vagrant
 git clone https://github.com/creative-connections/Bodylight.js-Composer.git
 cd Bodylight.js-Composer
-npm install
 cd website
-npm install
-cd ..
-npm run prod
-cd website
+npm install --no-bin-links
 npm run build
+cd ..
+npm install --no-bin-links
+npm run prod
 cd ..
 chown -R vagrant:vagrant /home/vagrant/Bodylight.js-Composer
 chmod ugo+rx /home/vagrant
