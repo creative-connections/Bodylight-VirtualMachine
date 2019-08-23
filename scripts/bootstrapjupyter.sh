@@ -63,7 +63,7 @@ source $DIR/$VERSION/bin/activate
 # depended gcc c++
 yum -y install gcc c++
 # nodejs
-curl curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo bash -
+curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo bash -
 yum -y remove nodejs
 yum -y install nodejs 
 # jupyter prov-o ssbio sos polyglot notebook
