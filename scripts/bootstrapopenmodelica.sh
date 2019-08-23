@@ -14,7 +14,18 @@ yum install -y zeromq
 # set correct conda environment, bug openmodelica kernel not available
 # $INSTALLDIR/bin/conda activate
 # pipe the rest of this script via a sudo call, otherwise openmodelica kernel won't be available    
-chown -R vagrant:vagrant $INSTALLDIR                                                                                                                                                                                                                                     
+chown -R vagrant:vagrant $INSTALLDIR  
+head -n -2 /var/www/html/index.html > temp.txt ; mv temp.txt /var/www/html/index.html
+cat <<EOF >>/var/www/html/index.html
+<h2>OpenModelica</h2>
+<p>Available as notebook type in <a href="/jupyter/">/jupyter/</a> - Click <code>New</code> and select <code>OpenModelica</code>.</p>
+<p>In bash use <code>OMEdit</code> - to launch Open Modelica Editor. <code>omc</code> - for om compiler command line script</p>
+<p>User's documentation of OpenModelica at <a href="https://openmodelica.org/useresresources/userdocumentation">https://openmodelica.org/useresresources/userdocumentation</a></p>
+<hr />
+</body>
+</html>
+EOF
+
 tail -n +$[LINENO+2] $0 | exec sudo -u vagrant bash                                                                                                                                                                                                     
 exit $?       
 echo integrating jupyter and openmodelica                                                                                                                                                                                                                           

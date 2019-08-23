@@ -138,11 +138,15 @@ if [ $1 == 'add' ]; then
     if [ -z $5 ]; then
       echo launching jupyter without logs
       #source /opt/jupyter/bin/activate py3
-      sudo -u vagrant $INSTALLDIR/bin/jupyter notebook --port $3 --no-browser &
+      cat <<EOF >>/etc.rc.local
+sudo -u vagrant $INSTALLDIR/bin/jupyter notebook --port $3 --no-browser &
+EOF
     else
       echo launching jupyter log to $5
       #source /opt/jupyter/bin/activate py3
-      sudo -u vagrant $INSTALLDIR/bin/jupyter notebook --port $3 --no-browser >$5 2>&1 &
+      cat <<EOF >>/etc.rc.local
+sudo -u vagrant $INSTALLDIR/bin/jupyter notebook --port $3 --no-browser >$5 2>&1 &
+EOF
     fi
     exit
   #else

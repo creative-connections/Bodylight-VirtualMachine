@@ -18,6 +18,22 @@ yum -y install httpd
 
 systemctl start httpd
 systemctl enable httpd
+cat <<EOF >/var/www/html/index.html
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Bodylight developer web site</title>
+</head>
+<body>
+<h1>List of installed application.</h1>
+<h2>Apache server</h2>
+<p>To start use <code>systemctl start httpd</code>.To stop use <code>systemctl stop httpd</code>.</p>
+<p>Inside VM you can view using http://localhost, outside vm mapping of 80 port is made to 8080, thus use http://localhost:8080</p>
+<hr />
+</body>
+</html>
+EOF
 
 # allow 80 port in firewall
 firewall-cmd --zone=public --add-port=80/tcp --permanent
