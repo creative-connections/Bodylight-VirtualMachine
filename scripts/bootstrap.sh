@@ -28,8 +28,8 @@ cat <<EOF >/var/www/html/index.html
 <body>
 <h1>List of installed application.</h1>
 <h2>Apache server</h2>
+<p>Inside VM you can view using http://localhost. Outside vm, port forwarding needs to be set up, by default to 8080, use http://localhost:8080</p>
 <p>To start use <code>systemctl start httpd</code>.To stop use <code>systemctl stop httpd</code>.</p>
-<p>Inside VM you can view using http://localhost, outside vm mapping of 80 port is made to 8080, thus use http://localhost:8080</p>
 <hr />
 </body>
 </html>

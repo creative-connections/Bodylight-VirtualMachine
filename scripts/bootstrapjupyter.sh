@@ -91,6 +91,7 @@ head -n -2 /var/www/html/index.html > temp.txt ; mv temp.txt /var/www/html/index
 cat <<EOF >>/var/www/html/index.html
 <h2>Jupyter notebook</h2>
 <p><a href="/jupyter/">/jupyter/</a> - Started automatically. To start manually use <code>/vagrant/scripts/jupyterinapache.sh add vagrant 8901 /jupyter /var/log/jupyter.log</code>.</p>
+<p>External documentation at <a href="https://jupyter.org/">jupyter.org</a></p>
 <hr />
 </body>
 </html>
