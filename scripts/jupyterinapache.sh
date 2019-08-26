@@ -148,6 +148,7 @@ if [ $1 == 'add' ]; then
     else
       cd /vagrant
     fi
+    chmod ugo+x /etc/rc.local 
     if [ -z $5 ]; then
       echo launching jupyter without logs
       #source /opt/jupyter/bin/activate py3
@@ -155,7 +156,13 @@ if [ $1 == 'add' ]; then
       removerclocal
       echo adding jupyter to rc.local 
       cat <<EOF >>/etc/rc.local
-sudo -u vagrant $INSTALLDIR/bin/jupyter notebook --port $3 --no-browser &
+if [ -d /vagrant_data ]; then 
+  cd /vagrant_data
+  sudo -u vagrant /home/vagrant/jupyter/bin/jupyter notebook --port $3 --no-browser &
+else
+  cd /vagrant
+  sudo -u vagrant /home/vagrant/jupyter/bin/jupyter notebook --port $3 --no-browser &
+fi
 EOF
     else
       echo launching jupyter log to $5
@@ -164,9 +171,16 @@ EOF
       removerclocal
       echo adding jupyter to rc.local 
       cat <<EOF >>/etc/rc.local
-sudo -u vagrant $INSTALLDIR/bin/jupyter notebook --port $3 --no-browser >$5 2>&1 &
+if [ -d /vagrant_data ]; then 
+  cd /vagrant_data
+  sudo -u vagrant /home/vagrant/jupyter/bin/jupyter notebook --port $3 --no-browser >$5 2>&1 &
+else
+  cd /vagrant
+  sudo -u vagrant /home/vagrant/jupyter/bin/jupyter notebook --port $3 --no-browser >$5 2>&1 &
+fi
 EOF
     fi
+
     exit
   #else
   #  echo Directory $WORKDIR does not exist.
