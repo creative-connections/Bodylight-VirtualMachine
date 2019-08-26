@@ -31,10 +31,7 @@ service httpd reload
 # add reference to index.html
 head -n -2 /var/www/html/index.html > temp.txt ; mv temp.txt /var/www/html/index.html
 cat <<EOF >>/var/www/html/index.html
-<h2>Composer</h2>
-<p><a href="/composer/">/composer/</a> - Bodylight.js Composer</p>
-<p>External Documentation at <a href="https://github.com/creative-connections/Bodylight.js-Composer"></a></p>
-<hr />
+<div><a href="/composer/"><u>/composer/</u> <br/>- Bodylight.js Composer</a></div>
 </body>
 </html>
 EOF

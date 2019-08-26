@@ -24,13 +24,26 @@ cat <<EOF >/var/www/html/index.html
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Bodylight developer web site</title>
+    <style>
+        div {
+            /* float: left; */
+            max-width: 30%;
+            min-width:200px;
+            border: 1px solid;
+            padding: 0.5em
+        }
+        a { color: blue;
+        text-decoration:none}
+        .small
+        {
+            color:black;
+            font-size:0.6em
+        }
+    </style>
 </head>
 <body>
 <h1>List of installed application.</h1>
-<h2>Apache server</h2>
-<p>Inside VM you can view using http://localhost. Outside vm, port forwarding needs to be set up, by default to 8080, use http://localhost:8080</p>
-<p>To start use <code>systemctl start httpd</code>.To stop use <code>systemctl stop httpd</code>.</p>
-<hr />
+<div><u>Apache server</u> <br/><span class="small">http://localhost. mapped by default to 8080, use http://localhost:8080 </span></div>
 </body>
 </html>
 EOF
