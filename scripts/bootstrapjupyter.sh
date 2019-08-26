@@ -89,7 +89,7 @@ c.NotebookApp.password = ''
 EOF
 head -n -2 /var/www/html/index.html > temp.txt ; mv temp.txt /var/www/html/index.html
 cat <<EOF >>/var/www/html/index.html
-<div><a href="/jupyter"><u>/jupyter/</u> <br/> Jupyter notebook</a></div>
+<a href="/jupyter"><div><u>/jupyter/</u> <br/> Jupyter notebook<br/><br/></div></a>
 </body>
 </html>
 EOF

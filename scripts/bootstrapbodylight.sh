@@ -4,20 +4,6 @@ set -x
 
 yum -y install git
 
-# install composer
-cd /home/vagrant
-git clone https://github.com/creative-connections/Bodylight.js-Composer.git
-cd Bodylight.js-Composer
-cd website
-npm install --no-bin-links
-npm run build
-cd ..
-npm install --no-bin-links
-npm install --no-bin-links webpack
-npm run prod
-cd ..
-chown -R vagrant:vagrant /home/vagrant/Bodylight.js-Composer
-chmod ugo+rx /home/vagrant
   cat <<EOF > /etc/httpd/conf.d/bodylight.conf
 Alias "/composer" "/home/vagrant/Bodylight.js-Composer/build"
 <Directory "/home/vagrant/Bodylight.js-Composer/build">
@@ -32,10 +18,29 @@ service httpd reload
 # add reference to index.html
 head -n -2 /var/www/html/index.html > temp.txt ; mv temp.txt /var/www/html/index.html
 cat <<EOF >>/var/www/html/index.html
-<div><a href="/composer/"><u>/composer/</u> <br/>- Bodylight.js Composer</a></div>
+<a href="/composer/"><div><u>/composer/</u> <br/>- Bodylight.js Composer<br/><br/></div></a>
 </body>
 </html>
 EOF
+
+# the rest as vagrant
+tail -n +$[LINENO+2] $0 | exec sudo -u vagrant bash                                                                                                                                                                                                     
+exit $? 
+# install composer
+cd /home/vagrant
+git clone https://github.com/creative-connections/Bodylight.js-Composer.git
+cd Bodylight.js-Composer
+cd website
+npm install
+npm run build
+cd ..
+npm install 
+npm install webpack
+npm run prod
+cd ..
+#chown -R vagrant:vagrant /home/vagrant/Bodylight.js-Composer
+chmod ugo+rx /home/vagrant
 # fmu compiler, TODO
 cd /home/vagrant
 git clone https://github.com/creative-connections/Bodylight.js-FMU-Compiler.git
+exit 0

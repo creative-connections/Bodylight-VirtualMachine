@@ -26,11 +26,13 @@ cat <<EOF >/var/www/html/index.html
     <title>Bodylight developer web site</title>
     <style>
         div {
-            /* float: left; */
-            max-width: 30%;
+            float: left; 
+            max-width: 40%;
             min-width:200px;
-            border: 1px solid;
-            padding: 0.5em
+            border: 1px solid #e1e4e8;
+            border-radius: 6px;
+            padding: 0.5em;
+            margin:0.5em
         }
         a { color: blue;
         text-decoration:none}
