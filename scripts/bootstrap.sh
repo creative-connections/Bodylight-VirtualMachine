@@ -32,7 +32,8 @@ cat <<EOF >/var/www/html/index.html
             border: 1px solid #e1e4e8;
             border-radius: 6px;
             padding: 0.5em;
-            margin:0.5em
+            margin:0.5em;
+            background: #f1f4f8;
         }
         a { color: blue;
         text-decoration:none}

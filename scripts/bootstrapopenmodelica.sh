@@ -19,9 +19,13 @@ yum install -y zeromq
 head -n -2 /var/www/html/index.html > temp.txt ; mv temp.txt /var/www/html/index.html
 cat <<EOF >>/var/www/html/index.html
 <div><u>OpenModelica</u> <br/><ul>
-    <li>    <code>OMEdit</code> - to launch Open Modelica Editor. </li>
-    <li><code>omc</code> - for om compiler command line script.</li>
-    <li> <a href="/jupyter/">/jupyter/</a> - Click <code>New</code> and select <code>OpenModelica</code>.</li>
+    <li>In Jupyter notebook at <a href="/jupyter/">/jupyter/</a>
+    <ul><li>Click <code>New</code></li><li>select <code>OpenModelica</code></li></ul></li>
+    <li>Open virtual machine desktop<ul>
+    <li>Open terminal emulator and type: </li>
+    <li><code>OMEdit</code> - to launch Open Modelica Editor. </li>
+    <li><code>omc</code> - to launch Open Modelica Compiler.</li>    
+    </ul></li>
 </ul></div>
 </body>
 </html>
