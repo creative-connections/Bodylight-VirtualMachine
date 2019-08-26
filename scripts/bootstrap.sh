@@ -45,7 +45,7 @@ cat <<EOF >/var/www/html/index.html
     </style>
 </head>
 <body>
-<h1>List of installed application.</h1>
+
 </body>
 </html>
 EOF
@@ -57,8 +57,3 @@ firewall-cmd --reload
 # disable selinux, by default enabled, httpd cannot initiate connection otherwise etc.
 setenforce 0
 sed -i -e "s/SELINUX=enforcing/SELINUX=disabled/g" /etc/selinux/config 
-# bootstrap dependencies
-#yum -y install dos2unix
-#dos2unix /vagrant/scripts/*.sh
-#chmod +x /vagrant/scripts/*.sh
-#/vagrant/scripts/bootstrapjupyter.sh
