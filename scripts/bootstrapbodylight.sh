@@ -18,7 +18,7 @@ service httpd reload
 # add reference to index.html
 head -n -2 /var/www/html/index.html > temp.txt ; mv temp.txt /var/www/html/index.html
 cat <<EOF >>/var/www/html/index.html
-<a href="/composer/"><div><u>/composer/</u> <br/>- Bodylight.js Composer<br/><br/></div></a>
+<a href="/composer/"><div><u>Bodylight.js Composer</u><ul><li><u>/composer/</u></li><li><code>/home/vagrant/Bodylight.js-Composer</code></li></ul></div></a>
 </body>
 </html>
 EOF

@@ -45,7 +45,6 @@ cat <<EOF >/var/www/html/index.html
 </head>
 <body>
 <h1>List of installed application.</h1>
-<div><u>Apache server</u> <br/><span class="small">http://localhost. mapped by default to 8080, use http://localhost:8080 </span></div>
 </body>
 </html>
 EOF
