@@ -89,7 +89,7 @@ c.NotebookApp.password = ''
 EOF
 head -n -2 /var/www/html/index.html > temp.txt ; mv temp.txt /var/www/html/index.html
 cat <<EOF >>/var/www/html/index.html
-<a href="/jupyter"><div><u>Jupyter notebook</u> <ul><li> <u>/jupyter</u></li><li><code>/home/vagrant/jupyter</code></li></ul></div></a>
+<a href="/jupyter"><div><u>Jupyter notebook</u> <ul><li> <u>/jupyter</u></li><li class="small">Installed at <code>/home/vagrant/jupyter</code></li></ul></div></a>
 </body>
 </html>
 EOF

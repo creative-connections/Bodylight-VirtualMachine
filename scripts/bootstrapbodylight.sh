@@ -12,6 +12,15 @@ Alias "/composer" "/home/vagrant/Bodylight.js-Composer/build"
   Options FollowSymLinks IncludesNOEXEC
   AllowOverride All
 </Directory> 
+
+Alias "/virtualbody" "/home/vagrant/Bodylight-Scenarios/virtualpatientapp/dist"
+<Directory "/home/vagrant/Bodylight-Scenarios/virtualpatientapp/dist">
+  Header set Access-Control-Allow-Origin "*"
+  Require all granted
+  Options FollowSymLinks IncludesNOEXEC
+  AllowOverride All
+</Directory>
+
 EOF
 service httpd reload
 
@@ -19,6 +28,7 @@ service httpd reload
 head -n -2 /var/www/html/index.html > temp.txt ; mv temp.txt /var/www/html/index.html
 cat <<EOF >>/var/www/html/index.html
 <a href="/composer/"><div><u>Bodylight.js Composer</u><ul><li><u>/composer/</u></li><li class="small">installed at <code>/home/vagrant/Bodylight.js-Composer</code></li></ul></div></a>
+<a href="/virtualbody/"><div><u>Virtual Body App</u><ul><li><u>/virtualbody/</u></li><li class="small">installed at <code>/home/vagrant/Bodylight-Scenarios</code></li></ul></div></a>
 </body>
 </html>
 EOF
@@ -43,4 +53,6 @@ chmod ugo+rx /home/vagrant
 # fmu compiler, TODO
 cd /home/vagrant
 git clone https://github.com/creative-connections/Bodylight.js-FMU-Compiler.git
+git clone https://github.com/creative-connections/Bodylight-Scenarios.git
+
 exit 0
