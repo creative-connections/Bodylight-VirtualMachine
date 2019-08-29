@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org//creative-connections/Bodylight-VirtualMachine.svg?branch=master)](https://travis-ci.org//creative-connections/Bodylight-VirtualMachine)
+
 # Virtual machine for Bodylight.js
 
 This is vagrant script to prepare devel VM from scratch
