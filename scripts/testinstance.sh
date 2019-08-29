@@ -30,7 +30,7 @@ fi
 # test OMC
 OMEDIT=0
 OMC=0
-hash OMEdit 2>/dev/null || { echo >&2 "OMEdito not installed.  "; OMEDIT=1; }
+hash OMEdit 2>/dev/null || { echo >&2 "OMEdit not installed.  "; OMEDIT=1; }
 hash omc 2>/dev/null || { echo >&2 "omc not installed.  "; OMC=1; }
 
 exit $(($APACHE+$JUPYTER+$VBODY+$OMEDIT+$OMC))
