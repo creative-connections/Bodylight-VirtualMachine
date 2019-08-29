@@ -1,0 +1,14 @@
+language: bash
+sudo: false
+    - apache2-dev
+# command to install dependencies
+install:
+  - scripts/bootstrap.sh
+  - scripts/bootstrapjupyter.sh
+  - scripts/bootstrapopenmodelica.sh
+  - scripts/bootstrapservices.sh
+  - scripts/bootstrapbodylight.sh
+
+script:
+  - echo Service tests
+  - scripts/testinstance.sh
