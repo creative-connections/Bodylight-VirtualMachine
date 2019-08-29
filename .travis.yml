@@ -1,6 +1,6 @@
 services: docker
 # command to install dependencies
-install: docker run -v `pwd`:/vagrant sl:7 "/vagrant/scripts/bootstrap.sh;/vagrant/scripts/bootstrapjupyter.sh;/vagrant/scripts/bootstrapopenmodelica.sh;/vagrant/scripts/bootstrapservices.sh;/vagrant/scripts/bootstrapbodylight.sh"
+install: docker run -v $TRAVIS_BUILD_DIR:/vagrant sl:7 "/vagrant/scripts/bootstrap.sh;/vagrant/scripts/bootstrapjupyter.sh;/vagrant/scripts/bootstrapopenmodelica.sh;/vagrant/scripts/bootstrapservices.sh;/vagrant/scripts/bootstrapbodylight.sh"
 script:
   - echo Service tests
-  - docker run -v `pwd`:/vagrant sl:7 "/vagrant/scripts/testinstance.sh"
+  - docker run -v $TRAVIS_BUILD_DIR:/vagrant sl:7 "/vagrant/scripts/testinstance.sh"
