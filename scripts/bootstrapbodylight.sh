@@ -13,11 +13,20 @@ Alias "/composer" "/home/vagrant/Bodylight.js-Composer/build"
   AllowOverride All
 </Directory> 
 
-Alias "/virtualbody" "/home/vagrant/Bodylight-Scenarios/virtualpatientapp/dist"
-<Directory "/home/vagrant/Bodylight-Scenarios/virtualpatientapp/dist">
+Alias "/virtualbody" "/home/vagrant/Bodylight-Scenarios/build/virtualbody/"
+<Directory "/home/vagrant/Bodylight-Scenarios/build/virtualbody">
   Header set Access-Control-Allow-Origin "*"
   Require all granted
   Options FollowSymLinks IncludesNOEXEC
+  AllowOverride All
+</Directory>
+
+Alias "/examples" "/home/vagrant/Bodylight-Scenarios/build/examples/"
+<Directory "/home/vagrant/Bodylight-Scenarios/build/examples">
+  Header set Access-Control-Allow-Origin "*"
+  Require all granted
+  Options +Indexes +FollowSymLinks +IncludesNOEXEC
+  IndexOptions FancyIndexing HTMLTable
   AllowOverride All
 </Directory>
 
@@ -29,6 +38,7 @@ head -n -2 /var/www/html/index.html > temp.txt ; mv temp.txt /var/www/html/index
 cat <<EOF >>/var/www/html/index.html
 <a href="/composer/"><div><u>Bodylight.js Composer</u><ul><li><u>/composer/</u></li><li class="small">installed at <code>/home/vagrant/Bodylight.js-Composer</code></li></ul></div></a>
 <a href="/virtualbody/"><div><u>Virtual Body App</u><ul><li><u>/virtualbody/</u></li><li class="small">installed at <code>/home/vagrant/Bodylight-Scenarios</code></li></ul></div></a>
+<a href="/examples/"><div><u>Examples</u><ul><li><u>/examples/</u></li><li class="small">installed at <code>/home/vagrant/Bodylight-Scenarios</code></li></ul></div></a>
 </body>
 </html>
 EOF
