@@ -1,0 +1,2 @@
+GIT_USR=[username to access github]
+GIT_TOKEN=[token from github generated at https://github.com/settings/tokens to access private repos]

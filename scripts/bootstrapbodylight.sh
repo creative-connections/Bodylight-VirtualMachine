@@ -64,5 +64,8 @@ chmod ugo+rx /home/vagrant
 cd /home/vagrant
 git clone https://github.com/creative-connections/Bodylight.js-FMU-Compiler.git
 git clone https://github.com/creative-connections/Bodylight-Scenarios.git
-
+cd Bodylight-Scenarios/virtualbody
+npm install
+sudo npm install aurelia-cli -g
+au build
 exit 0

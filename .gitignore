@@ -1,3 +1,4 @@
 anaconda.sh
 Miniconda3-*.sh
 .vagrant
+bootstrappsychotestenv.sh
