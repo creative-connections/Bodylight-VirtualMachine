@@ -82,6 +82,7 @@ fi
 mkdir /home/vagrant/.jupyter
 echo <<EOF > /home/vagrant/.jupyter/jupyter_notebook_config.py
 c.NotebookApp.base_url = '/jupyter'
+c.NotebookApp.allow_origin_pat='.*'
 c.NotebookApp.iopub_data_rate_limit = 1000000000
 c.NotebookApp.iopub_msg_rate_limit = 1000000000
 c.NotebookApp.token = ''
