@@ -23,4 +23,15 @@ vagrant up
 ### After installation
 After several minutes the VM is installed and configured. 
 Port forwarding is done from guest VM 80 to host 8080 by default, refer Vagrantfile for exact port number. Refer default page at http://localhost:8080
-Refer Jupyter notebook at http://localhost:8080/jupyter/
+
+The default installation contains these applications, some available from web interface:
+  * Jupyter notebook with Modelica kernel, link http://localhost:8080/jupyter/ [1]
+  * OpenModelica (v 1.13.2) - use e.g. `OMEdit` [2]
+  * Python v 3
+  * Bodylight components - Bodylight.js-FMU-Compiler, 
+  * Bodylight.js-Composer - refer http://localhost:8080/composer/
+  * Bodylight-Scenarios - refer http://localhost:8080/virtualbody/
+
+References:
+* [1] https://github.com/OpenModelica/jupyter-openmodelica
+* [2] https://openmodelica.org/
