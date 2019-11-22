@@ -51,10 +51,12 @@ sudo yum install -y wget bzip2
 ##conda install -y -c conda-forge bqplot mpld3 ipython-sql
 #jupyter-nbextension enable nglview --py --sys-prefix
 
+echo install anaconda gui prerequisities
+yum -q -y install libXcomposite libXcursor libXi libXtst libXrandr alsa-lib mesa-libEGL libXdamage mesa-libGL libXScrnSaver
 # anaconda full
 if [ ! -f /vagrant/anaconda.sh ]; then
-  # download if not exists
-  wget https://repo.anaconda.com/archive/Anaconda3-2019.07-Linux-x86_64.sh -O /vagrant/anaconda.sh
+  echo downloading anaconda
+  wget --quiet https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_64.sh -O /vagrant/anaconda.sh
 fi
 bash /vagrant/anaconda.sh -b -p $DIR/$VERSION
 
