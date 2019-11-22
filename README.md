@@ -23,6 +23,14 @@ git clone https://github.com/creative-connections/Bodylight-VirtualMachine.git
 cd Bodylight-VirtualMachine
 vagrant up
 ```
+
+After 15 mins or more you should see success.
+```bash
+    ...
+    default:     [yLpj] (webpack)/buildin/global.js 472 bytes {0} [built]
+    default: + exit 0
+```
+
 ## After installation
 After several minutes the VM is installed and configured. 
 Port forwarding is done from guest VM 80 to host 8080 by default, refer Vagrantfile for exact port number. Refer default page at http://localhost:8080
