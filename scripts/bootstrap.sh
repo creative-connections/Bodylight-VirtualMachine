@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+set -x
 # Prepares VM with web server, opens ports on firewall
 # define following variables in order to configure b2note with b2access/google oauth
 # install apache

@@ -9,6 +9,4 @@ if [ ! -f /vagrant/julia.tar.gz ]; then
 fi
 cd /home/vagrant
 tar -xzf /vagrant/julia.tar.gz
-/home/vagrant/julia-1.3.0/bin/julia -e "using Pkg; Pkg.add(\"IJulia\")"
-systemctl stop jupyter
-systemctl start jupyter
+#install julia depended packages in bootstrapservices
