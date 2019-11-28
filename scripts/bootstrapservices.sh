@@ -8,7 +8,7 @@ dos2unix /vagrant/scripts/jupyterinapache.sh
 tail -n +$[LINENO+2] $0 | exec sudo -u vagrant bash                                                                                                                                                                                                     
 exit $? 
 # install pyfmi
-conda install -y -c conda-forge pyfmi
+/home/vagrant/jupyter/bin/conda install -y -c conda-forge pyfmi
 /home/vagrant/julia-1.3.0/bin/julia -e "using Pkg; Pkg.add(\"IJulia\");Pkg.add(\"RDatasets\");Pkg.add(\"Gadfly\")"
 systemctl stop jupyter
 systemctl start jupyter
