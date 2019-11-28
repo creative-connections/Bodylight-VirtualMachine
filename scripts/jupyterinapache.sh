@@ -126,7 +126,7 @@ fi
 if [ $1 == 'remove' ]; then
   killjupyter $3
   removeapacheproxy $4
-  removerclocal
+  #removerclocal
   exit
 fi
 
@@ -143,45 +143,40 @@ if [ $1 == 'add' ]; then
     killjupyter $3
     addapacheproxy http://localhost:$3 $4
     setjupyterurl $4
-    if [ -d "/vagrant_data" ]; then
+    if [ -d "/vagrant_data" ]; then 
       cd /vagrant_data
+      JUPYTERDIR = /vagrant_data
     else
       cd /vagrant
+      JUPYTERDIR = /vagrant
     fi
-    chmod ugo+x /etc/rc.local 
-    if [ -z $5 ]; then
-      echo launching jupyter without logs
-      #source /opt/jupyter/bin/activate py3
-      sudo -u vagrant $INSTALLDIR/bin/jupyter notebook --port $3 --no-browser &
-      removerclocal
-      echo adding jupyter to rc.local 
-      cat <<EOF >>/etc/rc.local
-if [ -d /vagrant_data ]; then 
-  cd /vagrant_data
-  sudo -u vagrant /home/vagrant/jupyter/bin/jupyter notebook --port $3 --no-browser &
-else
-  cd /vagrant
-  sudo -u vagrant /home/vagrant/jupyter/bin/jupyter notebook --port $3 --no-browser &
-fi
-EOF
-    else
-      echo launching jupyter log to $5
-      #source /opt/jupyter/bin/activate py3
-      sudo -u vagrant $INSTALLDIR/bin/jupyter notebook --port $3 --no-browser >$5 2>&1 &
-      removerclocal
-      echo adding jupyter to rc.local 
-      cat <<EOF >>/etc/rc.local
-if [ -d /vagrant_data ]; then 
-  cd /vagrant_data
-  sudo -u vagrant /home/vagrant/jupyter/bin/jupyter notebook --port $3 --no-browser >$5 2>&1 &
-else
-  cd /vagrant
-  sudo -u vagrant /home/vagrant/jupyter/bin/jupyter notebook --port $3 --no-browser >$5 2>&1 &
-fi
-EOF
-    fi
+    JUPYTERPORT = $3
+    #chmod ugo+x /etc/rc.local 
+    echo launching jupyter
+    #source /opt/jupyter/bin/activate py3
+    #TODO  removerclocal
+    echo adding jupyter to rc.local 
+    cat <<EOF >>/etc/systemd/system/jupyter.service
+[Unit]
+Description=Jupyter Service
 
-    exit
+[Service]
+Type=simple
+PIDFile=/var/run/jupyter-service.pid
+User=vagrant
+ExecStart=/home/vagrant/jupyter/bin/jupyter notebook --port ${JUPYTERPORT} --no-browser
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=westlife-metadata
+WorkingDirectory=${JUPYTERDIR}
+
+[Install]
+WantedBy=multi-user.target
+EOF
+    #sudo -u vagrant $INSTALLDIR/bin/jupyter notebook --port $3 --no-browser &
+    systemctl enable jupyter
+    systemctl start jupyter
+  exit
   #else
   #  echo Directory $WORKDIR does not exist.
   #  help
