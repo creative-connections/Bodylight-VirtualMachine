@@ -10,6 +10,6 @@ exit $?
 # install pyfmi
 /home/vagrant/jupyter/bin/conda install -y -c conda-forge pyfmi
 /home/vagrant/julia-1.3.0/bin/julia -e "using Pkg; Pkg.add(\"IJulia\");Pkg.add(\"RDatasets\");Pkg.add(\"Gadfly\")"
-systemctl stop jupyter
-systemctl start jupyter
+sudo systemctl stop jupyter
+sudo systemctl start jupyter
 exit 0

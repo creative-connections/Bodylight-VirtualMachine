@@ -145,12 +145,12 @@ if [ $1 == 'add' ]; then
     setjupyterurl $4
     if [ -d "/vagrant_data" ]; then 
       cd /vagrant_data
-      JUPYTERDIR = /vagrant_data
+      JUPYTERDIR=/vagrant_data
     else
       cd /vagrant
-      JUPYTERDIR = /vagrant
+      JUPYTERDIR=/vagrant
     fi
-    JUPYTERPORT = $3
+    JUPYTERPORT=$3
     #chmod ugo+x /etc/rc.local 
     echo launching jupyter
     #source /opt/jupyter/bin/activate py3
