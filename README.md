@@ -2,17 +2,24 @@
 
 # Virtual machine for Bodylight.js
 
-This is vagrant script to prepare devel VM from scratch
+This is vagrant script to prepare development environment for Bodylight and related software in self contained independent virtual machine.
+
+## Motivation
+
+Vagrant tool automates configuration and provisioning of virtual machine it does download clean image of selected OS (Scientific Linux 7). Installs most updated version of depended software (Apache HTTPD, OpenModelica, Bodylight.js, Conda, Python, Jupyter) and configures shared folders, port forwarding and secure ssh keys during first and upcoming boot.
+Virtual machine contains all software in tested environment thus preventing issues like `works on my machine` or `doesn't work on my machine`.
+Additionally, virtual machine is a reference installation to compare with different environments.
 
 ## Requirements
 
 Requirement: 
 - HW: 1 CPU, 2 GB RAM, 5-50GB disk space.
 - OS: Any OS supported by VirtualBox and Vagrant tool (tested on Windows 7,Windows 10, Ubuntu 16.04)
-- SW: Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads) tested version Virtualbox 6.0.14.(( Note we experienced issue VERR_NEM_VM_CREATE_FAILED - see howto setup Windows 10 at https://forums.virtualbox.org/viewtopic.php?f=6&t=93712))
+- SW: Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads) tested version Virtualbox 6.0.14.(( Note we experienced issue VERR_NEM_VM_CREATE_FAILED - need to disable Windows features (V-Host) and see howto setup Windows 10 at https://forums.virtualbox.org/viewtopic.php?f=6&t=93712))
 - SW: Install [Vagrant](https://www.vagrantup.com/downloads.html) tested version 2.2.6
 
 Some OS has their own distribution of vagrant and virtualbox: `yum install vagrant virtualbox` OR `apt install vagrant virtualbox`.
+
 
 ## Installation
 
@@ -23,12 +30,22 @@ git clone https://github.com/creative-connections/Bodylight-VirtualMachine.git
 cd Bodylight-VirtualMachine
 vagrant up
 ```
-
-After 15 mins or more you should see success.
+This first `vagrant up` takes 15-45 mins (or more depending on network speed). As the bootstrap scripts installs and configures all required software. After that, you should see success.
 ```bash
     ...
     default:     [yLpj] (webpack)/buildin/global.js 472 bytes {0} [built]
     default: + exit 0
+```
+
+## Update
+If you have previously installed VM and would liek to update
+  1. If you have any data stored in VM, save it to external storage - e.g. to shared folder `/vagrant` folder.
+  2. Then to update VM environment: destroy VM, do git pull and create VM from scratch again by:
+
+```bash
+vagrant destroy
+git pull
+vagrant up
 ```
 
 ## After installation
@@ -42,6 +59,23 @@ The default installation contains these applications, some available from web in
   * Bodylight components - Bodylight.js-FMU-Compiler, 
   * Bodylight.js-Composer - refer http://localhost:8080/composer/
   * Bodylight-Scenarios - refer http://localhost:8080/virtualbody/
+If you don't need VM, you can halt it using Virtualbox UI or using
+```bash
+vagrant halt
+```
+If you need VM, you can boot it again using:
+```bash
+vagrant up
+```
+To restart VM
+```bash
+vagrant reload
+```
+The second and other `vagrant up`is rapid and should take couple of seconds, because time consuming provisioning (bootstrap scripts) is already done.
+  
+## Bootstrap scripts
+
+Installation scripts are preserved in `/scripts` directory, they are launched only when `vagrant up`is made first or when provisioning is explicitly requested by `vagrant up --provision`.
   
 ### Halt VM
 To stop VM.
@@ -56,12 +90,13 @@ To restart VM
 ```bash
 vagrant reload
 ```
+## Clean, Uninstall
 
 To destroy VM and remove all VM files do the following. The files stored in shared folders /vagrant and /vagrant_data are preserved. 
+
 ```bash
 vagrant destroy
 ```
-
 
 References:
 
