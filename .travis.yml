@@ -1,7 +1,7 @@
 services: docker
 # command to install dependencies
 install: 
-  - sudo docker run --detach --privileged --volume="${PWD}":/vagrant sl:7 /bin/bash -c "/vagrant/scripts/bootstrap.sh;mkdir -p /home/vagrant;cd /home/vagrant;/vagrant/scripts/bootstrapjupyter.sh;/vagrant/scripts/bootstrapopenmodelica.sh;/vagrant/scripts/bootstrapservices.sh;/vagrant/scripts/bootstrapbodylight.sh"
+  - sudo docker run --detach --privileged --volume="${PWD}":/vagrant sl:7 /bin/bash -c "/vagrant/scripts/bootstrap.sh;mkdir -p /home/vagrant;cd /home/vagrant;/vagrant/scripts/bootstrapjupyter.sh;/vagrant/scripts/bootstrapopenmodelica.sh;/vagrant/scripts/bootstrapbodylight.sh;/vagrant/scripts/bootstrapjulia.sh;/vagrant/scripts/bootstrapservices.sh;"
   - CID=`docker ps -l -q`
   - sudo docker commit ${CID} sl7vb
 script:
