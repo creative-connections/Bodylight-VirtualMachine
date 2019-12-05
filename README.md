@@ -6,7 +6,7 @@ This is vagrant script to prepare development environment for Bodylight and rela
 
 ## Motivation
 
-Vagrant tool automates configuration and provisioning of virtual machine it does download clean image of selected OS (Scientific Linux 7). Installs most updated version of depended software (Apache HTTPD, OpenModelica, Bodylight.js, Conda, Python, Jupyter) and configures shared folders, port forwarding and secure ssh keys during first and upcoming boot.
+Vagrant tool automates configuration and provisioning of virtual machine it does download clean image of selected OS (Scientific Linux 7). Installs most updated version of depended software (Apache HTTPD, OpenModelica, Bodylight.js, Conda, Python, Julia, Jupyter) and configures shared folders, port forwarding and secure ssh keys during first and upcoming boot.
 Virtual machine contains all software in tested environment thus preventing issues like `works on my machine` or `doesn't work on my machine`.
 Additionally, virtual machine is a reference installation to compare with different environments.
 
