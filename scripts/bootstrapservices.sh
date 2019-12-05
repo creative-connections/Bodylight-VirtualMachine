@@ -5,6 +5,7 @@ dos2unix /vagrant/scripts/jupyterinapache.sh
 /vagrant/scripts/jupyterinapache.sh add vagrant 8901 /jupyter /var/log/jupyter.log
 # install pyfmi
 # the rest as vagrant
+chown -R vagrant:vagrant /home/vagrant
 tail -n +$[LINENO+2] $0 | exec sudo -u vagrant bash                                                                                                                                                                                                     
 exit $? 
 # install pyfmi and mamba
