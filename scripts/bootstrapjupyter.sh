@@ -54,11 +54,11 @@ sudo yum install -y wget bzip2
 echo install anaconda gui prerequisities
 yum -q -y install libXcomposite libXcursor libXi libXtst libXrandr alsa-lib mesa-libEGL libXdamage mesa-libGL libXScrnSaver
 # anaconda full
-if [ ! -f /vagrant/anaconda.sh ]; then
+if [ ! -f /vagrant/cache/anaconda.sh ]; then
   echo downloading anaconda
-  wget --quiet https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_64.sh -O /vagrant/anaconda.sh
+  wget --quiet https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_64.sh -O /vagrant/cache/anaconda.sh
 fi
-bash /vagrant/anaconda.sh -b -p $DIR/$VERSION
+bash /vagrant/cache/anaconda.sh -b -p $DIR/$VERSION
 
 #$DIR/$VERSION/bin/conda activate
 source $DIR/$VERSION/bin/activate

@@ -4,7 +4,15 @@ set -x
 # openmodelica, blas-devel and lapack-devel required for OMC, it also installs gcc,c++,c compilers
 INSTALLDIR=/home/vagrant/jupyter
 wget https://build.openmodelica.org/rpm/el7/omc.repo -O /etc/yum.repos.d/omc.repo
-yum install -y openmodelica-1.13 blas-devel lapack-devel omniORB
+
+# check if local rpm downloaded - install from them otherwise download and install
+yum install -y yum-utils
+mkdir -p /vagrant/cache
+if [ ! -f /vagrant/cache/openmodelica-1.14-1.14.1-2.el7.x86_64.rpm ]; then
+  #yum install -y openmodelica-1.14 blas-devel lapack-devel omniORB
+  yumdownloader openmodelica-1.14 blas-devel lapack-devel omniORB --resolve --destdir /vagrant/cache
+fi 
+rpm -ivh /vagrant/cache/*.rpm    
 
 # omniorb
 #yum install -y omniORB
