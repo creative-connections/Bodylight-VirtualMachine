@@ -56,6 +56,7 @@ yum -q -y install libXcomposite libXcursor libXi libXtst libXrandr alsa-lib mesa
 # anaconda full
 if [ ! -f /vagrant/cache/anaconda.sh ]; then
   echo downloading anaconda
+  mkdir -p /vagrant/cache/
   wget --quiet https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_64.sh -O /vagrant/cache/anaconda.sh
 fi
 bash /vagrant/cache/anaconda.sh -b -p $DIR/$VERSION
