@@ -51,6 +51,7 @@ cd /home/vagrant
 git clone https://github.com/creative-connections/Bodylight.js-Composer.git
 cd Bodylight.js-Composer
 cd website
+sudo npm config set cache /vagrant/cache --global
 npm install
 npm run build
 cd ..
