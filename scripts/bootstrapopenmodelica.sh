@@ -6,13 +6,15 @@ INSTALLDIR=/home/vagrant/jupyter
 wget https://build.openmodelica.org/rpm/el7/omc.repo -O /etc/yum.repos.d/omc.repo
 
 # check if local rpm downloaded - install from them otherwise download and install
-yum install -y yum-utils
+yum install -y yum-plugin-downloadonly
 mkdir -p /vagrant/cache
 if [ ! -f /vagrant/cache/openmodelica-1.14-1.14.1-2.el7.x86_64.rpm ]; then
-  #yum install -y openmodelica-1.14 blas-devel lapack-devel omniORB
-  yumdownloader openmodelica-1.14 blas-devel lapack-devel omniORB --resolve --destdir /vagrant/cache
+  yum install --downloadonly --downloaddir=/vagrant/cache openmodelica-1.14 blas-devel lapack-devel omniORB
 fi 
-rpm -ivh /vagrant/cache/*.rpm    
+
+#yum install -y openmodelica-1.14 blas-devel lapack-devel omniORB
+#this is installing from local cache downloaded before
+yum -y -q install /vagrant/cache/*.rpm    
 
 # omniorb
 #yum install -y omniORB
