@@ -3,6 +3,10 @@ set -x
 
 
 yum -y install git
+# nodejs
+curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo bash -
+yum -y remove nodejs
+yum -y install nodejs 
 
   cat <<EOF > /etc/httpd/conf.d/bodylight.conf
 Alias "/composer" "/home/vagrant/Bodylight.js-Composer/build"
@@ -51,6 +55,7 @@ cd /home/vagrant
 git clone https://github.com/creative-connections/Bodylight.js-Composer.git
 cd Bodylight.js-Composer
 cd website
+sudo npm config set cache /vagrant/cache --global
 npm install
 npm run build
 cd ..
@@ -65,6 +70,10 @@ cd /home/vagrant
 git clone https://github.com/creative-connections/Bodylight.js-FMU-Compiler.git
 git clone https://github.com/creative-connections/Bodylight-Scenarios.git
 cd Bodylight-Scenarios/virtualbody
+# cache gltf files used in 
+mkdir -p static/models
+python cachemodels.py
+# build 3D Virtualbody app
 npm install
 sudo npm install aurelia-cli -g
 au build
