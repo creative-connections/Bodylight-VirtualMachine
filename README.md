@@ -2,7 +2,7 @@
 
 # Virtual machine for Bodylight.js
 
-This is vagrant script to prepare development environment for Bodylight and related software in self contained independent virtual machine.
+This repository contains Vagrant scripts to prepare virtual machine in VirtualBox with development environment for Bodylight technology. After installation the Virtual Machine contains preinstalled and preconfigured tools (OpenModelica, Bodylight.js, Python, Julia, Jupyter and Anaconda) and is accessible as local web page (http://localhost:8080).  
 
 ## Motivation
 
@@ -20,7 +20,7 @@ Requirement:
 - SW: Install [Vagrant](https://www.vagrantup.com/downloads.html) tested version 2.2.6
 
 Some OS has their own distribution of vagrant and virtualbox: `yum install vagrant virtualbox` OR `apt install vagrant virtualbox`.
-During installation - 1.5 GB of depended packages (OpenModelica, Anaconda, Julia) are downloaded and cached in /cache subdirectory. 
+During installation - 1.5 GB of depended packages (OpenModelica, Anaconda, Julia) are downloaded and persisted in host `/cache` subdirectory. 
 
 
 ## Installation
