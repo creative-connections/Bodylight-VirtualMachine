@@ -20,6 +20,7 @@ Requirement:
 - SW: Install [Vagrant](https://www.vagrantup.com/downloads.html) tested version 2.2.6
 
 Some OS has their own distribution of vagrant and virtualbox: `yum install vagrant virtualbox` OR `apt install vagrant virtualbox`.
+During installation - 1.5 GB of depended packages (OpenModelica, Anaconda, Julia) are downloaded and cached in /cache subdirectory. 
 
 
 ## Installation
@@ -39,7 +40,7 @@ This first `vagrant up` takes 15-45 mins (or more depending on network speed). A
 ```
 
 ## Update
-If you have previously installed VM and would liek to update
+If you have previously installed VM and would like to update
   1. If you have any data stored in VM, save it to external storage - e.g. to shared folder `/vagrant` folder.
   2. Then to update VM environment: destroy VM, do git pull and create VM from scratch again by:
 
@@ -48,6 +49,7 @@ vagrant destroy
 git pull
 vagrant up
 ```
+This will clean VM and install the software again - if `/cache` is present from previous installation it will use it rather to download again from Internet repositories.
 
 ## After installation
 After several minutes the VM is installed and configured. 
@@ -97,6 +99,10 @@ To destroy VM and remove all VM files do the following. The files stored in shar
 
 ```bash
 vagrant destroy
+```
+and optionally delete cache of installation packages in 
+```bash
+rm -rf cache
 ```
 
 References:
