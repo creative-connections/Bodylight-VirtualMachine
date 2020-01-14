@@ -66,6 +66,10 @@ cd /home/vagrant
 git clone https://github.com/creative-connections/Bodylight.js-FMU-Compiler.git
 git clone https://github.com/creative-connections/Bodylight-Scenarios.git
 cd Bodylight-Scenarios/virtualbody
+# cache gltf files used in 
+mkdir -p static/models
+python cachemodels.py
+# build 3D Virtualbody app
 npm install
 sudo npm install aurelia-cli -g
 au build
