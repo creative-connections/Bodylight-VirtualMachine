@@ -22,8 +22,8 @@ do
 done
 # SALib for sensitivity analysis, DyMat for opening Modelica MAT files in Python
 /home/vagrant/jupyter/bin/pip install -q DyMat SALib 
-# install julia dependencies for jupyter (ijulia) and demo notebook using rdatasets
-/home/vagrant/julia-1.3.0/bin/julia -e "using Pkg; Pkg.add(\"IJulia\");Pkg.add(\"RDatasets\");Pkg.add(\"Gadfly\")"
+# optionally install julia dependencies for jupyter (ijulia) and demo notebook using rdatasets
+# /home/vagrant/julia-1.3.0/bin/julia -e "using Pkg; Pkg.add(\"IJulia\");Pkg.add(\"RDatasets\");Pkg.add(\"Gadfly\")"
 sudo systemctl stop jupyter
 sudo systemctl start jupyter
 exit 0
