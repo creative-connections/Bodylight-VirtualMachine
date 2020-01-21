@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+set -x
 HTTPD_CONF="/etc/httpd/conf.d/jupyter.conf"
 HTTPD_SERVICE="httpd"
 if [ -z "$INSTALLDIR" ]; then 
