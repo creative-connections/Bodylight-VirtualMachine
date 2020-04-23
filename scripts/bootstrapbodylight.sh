@@ -52,7 +52,7 @@ EOF
 tail -n +$[LINENO+2] $0 | exec sudo -u vagrant bash                                                                                                                                                                                                     
 exit $? 
 # install dev dependencies
-npm install aurelia-cli -g
+sudo npm install aurelia-cli -g
 
 # install composer
 cd /home/vagrant
