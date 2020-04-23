@@ -9,8 +9,8 @@ yum -y remove nodejs
 yum -y install nodejs 
 
   cat <<EOF > /etc/httpd/conf.d/bodylight.conf
-Alias "/composer" "/home/vagrant/Bodylight.js-Composer/build"
-<Directory "/home/vagrant/Bodylight.js-Composer/build">
+Alias "/composer" "/home/vagrant/Bodylight.js-Composer/dist"
+<Directory "/home/vagrant/Bodylight.js-Composer/dist">
   Header set Access-Control-Allow-Origin "*"
   Require all granted
   Options FollowSymLinks IncludesNOEXEC
@@ -25,8 +25,8 @@ Alias "/virtualbody" "/home/vagrant/Bodylight-Scenarios/build/virtualbody/"
   AllowOverride All
 </Directory>
 
-Alias "/examples" "/home/vagrant/Bodylight-Scenarios/build/examples/"
-<Directory "/home/vagrant/Bodylight-Scenarios/build/examples">
+Alias "/components" "/home/vagrant/Bodylight.js-Components/webcomponents/dist/"
+<Directory "/home/vagrant/Bodylight.js-Components/webcomponents/dist">
   Header set Access-Control-Allow-Origin "*"
   Require all granted
   Options +Indexes +FollowSymLinks +IncludesNOEXEC
@@ -42,7 +42,7 @@ head -n -2 /var/www/html/index.html > temp.txt ; mv temp.txt /var/www/html/index
 cat <<EOF >>/var/www/html/index.html
 <a href="/composer/"><div><u>Bodylight.js Composer</u><ul><li><u>/composer/</u></li><li class="small">installed at <code>/home/vagrant/Bodylight.js-Composer</code></li></ul></div></a>
 <a href="/virtualbody/"><div><u>Virtual Body App</u><ul><li><u>/virtualbody/</u></li><li class="small">installed at <code>/home/vagrant/Bodylight-Scenarios</code></li></ul></div></a>
-<a href="/examples/"><div><u>Examples</u><ul><li><u>/examples/</u></li><li class="small">installed at <code>/home/vagrant/Bodylight-Scenarios</code></li></ul></div></a>
+<a href="/components/"><div><u>Web Components</u><ul><li><u>/components/</u></li><li class="small">installed at <code>/home/vagrant/Bodylight.js-Components</code></li></ul></div></a>
 </body>
 </html>
 EOF
@@ -54,17 +54,11 @@ exit $?
 cd /home/vagrant
 git clone https://github.com/creative-connections/Bodylight.js-Composer.git
 cd Bodylight.js-Composer
-cd website
-sudo npm config set cache /vagrant/cache --global
+git checkout dev-tomas
 npm install
-npm run build
-cd ..
-npm install 
-npm install webpack
-npm run prod
-cd ..
-#chown -R vagrant:vagrant /home/vagrant/Bodylight.js-Composer
-chmod ugo+rx /home/vagrant
+sudo npm install aurelia-cli -g
+au build
+
 # fmu compiler, TODO
 cd /home/vagrant
 git clone https://github.com/creative-connections/Bodylight.js-FMU-Compiler.git
@@ -75,6 +69,15 @@ mkdir -p static/models
 python cachemodels.py
 # build 3D Virtualbody app
 npm install
-sudo npm install aurelia-cli -g
 au build
+
+cd /home/vagrant
+git clone https://github.com/creative-connections/Bodylight.js-Components.git
+cd Bodylight.js-Components/webcomponents/
+# build components app
+npm install
+au build
+
+chmod ugo+rx /home/vagrant
+
 exit 0
