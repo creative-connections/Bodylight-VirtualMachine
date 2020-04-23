@@ -4,7 +4,8 @@ set -x
 
 yum -y install git
 # nodejs
-curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo bash -
+#curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo bash -
+curl -sL https://rpm.nodesource.com/setup_14.x | bash -
 yum -y remove nodejs
 yum -y install nodejs 
 
@@ -50,13 +51,15 @@ EOF
 # the rest as vagrant
 tail -n +$[LINENO+2] $0 | exec sudo -u vagrant bash                                                                                                                                                                                                     
 exit $? 
+# install dev dependencies
+npm install aurelia-cli -g
+
 # install composer
 cd /home/vagrant
 git clone https://github.com/creative-connections/Bodylight.js-Composer.git
 cd Bodylight.js-Composer
 git checkout dev-tomas
 npm install
-sudo npm install aurelia-cli -g
 au build
 
 # fmu compiler, TODO
@@ -74,6 +77,7 @@ au build
 cd /home/vagrant
 git clone https://github.com/creative-connections/Bodylight.js-Components.git
 cd Bodylight.js-Components/webcomponents/
+git checkout dev-tomas
 # build components app
 npm install
 au build
