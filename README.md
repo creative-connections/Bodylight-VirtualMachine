@@ -23,7 +23,12 @@ Some OS has their own distribution of vagrant and virtualbox: `yum install vagra
 
 ## Installation
 
-Type in your command line:
+**(Optional)** Install demo Jupyter notebooks next to the Bodylight-VirtualMachine on host machine, it will appear as /vagrant_data in virtual machine and will be available for jupyter notebook after installation.
+```bash
+git clone https://github.com/creative-connections/Bodylight-notebooks.git
+```
+
+**(Required)** Type in your command line:
 
 ```bash
 git clone https://github.com/creative-connections/Bodylight-VirtualMachine.git
@@ -38,6 +43,7 @@ This first `vagrant up` takes 15-45 mins (or more depending on network speed). A
 ```
 
 1.5 GB of depended packages (OpenModelica, Anaconda, Julia) are downloaded and persisted in host `/cache` subdirectory during installation. Use `vagrant destroy` to erase virtual machine and `vagrant up` to create virtual machine from scratch again - the `/cache` subdirectory is used to save (not eliminate) network bandwith. Delete `/cache` subdirectory manually if you do not need it or plan to make virtual machine from scratch all from Internet resources again.
+
 
 ## Update
 
