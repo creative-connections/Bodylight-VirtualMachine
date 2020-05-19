@@ -18,8 +18,8 @@ Alias "/composer" "/home/vagrant/Bodylight.js-Composer/dist"
   AllowOverride All
 </Directory> 
 
-Alias "/virtualbody" "/home/vagrant/Bodylight-Scenarios/build/virtualbody/"
-<Directory "/home/vagrant/Bodylight-Scenarios/build/virtualbody">
+Alias "/virtualbody" "/home/vagrant/Bodylight-VirtualBody/dist"
+<Directory "/home/vagrant/Bodylight-VirtualBody/dist">
   Header set Access-Control-Allow-Origin "*"
   Require all granted
   Options FollowSymLinks IncludesNOEXEC
@@ -65,8 +65,13 @@ au build
 # fmu compiler, TODO
 cd /home/vagrant
 git clone https://github.com/creative-connections/Bodylight.js-FMU-Compiler.git
+
+# Scenarios
 git clone https://github.com/creative-connections/Bodylight-Scenarios.git
-cd Bodylight-Scenarios/virtualbody
+
+# VirtualBody
+git clone https://github.com/creative-connections/Bodylight-VirtualBody.git
+cd Bodylight-VirtualBody
 # cache gltf files used in 
 mkdir -p static/models
 python cachemodels.py
@@ -74,10 +79,11 @@ python cachemodels.py
 npm install
 au build
 
+# components
 cd /home/vagrant
 git clone https://github.com/creative-connections/Bodylight.js-Components.git
 cd Bodylight.js-Components/webcomponents/
-git checkout dev-tomas
+# git checkout dev-tomas
 # build components app
 npm install
 au build
