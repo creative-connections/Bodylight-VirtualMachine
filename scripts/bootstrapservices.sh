@@ -11,15 +11,16 @@ exit $?
 set -x 
 # install pyfmi and mamba
 /home/vagrant/jupyter/bin/conda init
-/home/vagrant/jupyter/bin/conda install -q -y -c conda-forge pyfmi mamba
-n=0
-until [ $n -ge 5 ]
-do
-   echo "attempting to do mamba install "$n
-   /home/vagrant/jupyter/bin/mamba install -q -y -c conda-forge sos sos-pbs sos-notebook jupyterlab-sos sos-bash sos-python && break  # substitute your command here
-   n=$[$n+1]
-   sleep 2
-done
+/home/vagrant/jupyter/bin/conda install -q -y -c conda-forge assimulo=3.1 certifi=2019.9.11 conda=4.8.3 fmilib=2.2 libblas=3.8.0 libcblas=3.8.0 liblapack=3.8.0 libsolv=0.7.13 mamba=0.1.2 metis=5.1.0 pyfmi=2.7.2 python_abi=3.7 suitesparse=4.5.6 sundials=3.2.1
+# SOS notebooks - deprecating
+# n=0
+# until [ $n -ge 5 ]
+# do
+#   echo "attempting to do mamba install "$n
+#   /home/vagrant/jupyter/bin/mamba install -q -y -c conda-forge sos sos-pbs sos-notebook jupyterlab-sos sos-bash sos-python && break  # substitute your command here
+#   n=$[$n+1]
+#   sleep 2
+# done
 # SALib for sensitivity analysis, DyMat for opening Modelica MAT files in Python
 /home/vagrant/jupyter/bin/pip install -q DyMat SALib 
 # optionally install julia dependencies for jupyter (ijulia) and demo notebook using rdatasets

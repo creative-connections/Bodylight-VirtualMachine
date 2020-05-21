@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 set -x
 
-
 yum -y install git
 # nodejs
 #curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo bash -
@@ -48,6 +47,11 @@ cat <<EOF >>/var/www/html/index.html
 </html>
 EOF
 
+# install docker - for FMU-Compiler
+yum -y install docker
+systemctl enable docker
+systemctl start docker
+
 # the rest as vagrant
 tail -n +$[LINENO+2] $0 | exec sudo -u vagrant bash                                                                                                                                                                                                     
 exit $? 
@@ -65,6 +69,10 @@ au build
 # fmu compiler, TODO
 cd /home/vagrant
 git clone https://github.com/creative-connections/Bodylight.js-FMU-Compiler.git
+cd Bodylight.js-FMU-Compiler
+sudo docker build -t bodylight.js.fmu.compiler "$(pwd)"
+# run docker compiler reads from /input - puts to /output
+sudo docker run -d   --name bodylight.js.fmu.compiler   -v /input:$(pwd)/input -v /output:$(pwd)/output  --rm bodylight.js.fmu.compiler:latest bash worker.sh
 
 # Scenarios
 git clone https://github.com/creative-connections/Bodylight-Scenarios.git
