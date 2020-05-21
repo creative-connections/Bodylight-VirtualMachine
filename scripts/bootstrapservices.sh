@@ -11,7 +11,7 @@ exit $?
 set -x 
 # install pyfmi and mamba
 /home/vagrant/jupyter/bin/conda init
-/home/vagrant/jupyter/bin/conda install -q -y -c conda-forge assimulo=3.1 certifi=2019.9.11 conda=4.8.3 fmilib=2.2 libblas=3.8.0 libcblas=3.8.0 liblapack=3.8.0 libsolv=0.7.13 mamba=0.1.2 metis=5.1.0 pyfmi=2.7.2 python_abi=3.7 suitesparse=4.5.6 sundials=3.2.1
+/home/vagrant/jupyter/bin/conda install -q -y -c conda-forge pyfmi=2.7.2
 # SOS notebooks - deprecating
 # n=0
 # until [ $n -ge 5 ]
