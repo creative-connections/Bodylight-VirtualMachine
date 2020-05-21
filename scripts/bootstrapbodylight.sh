@@ -74,7 +74,9 @@ sudo docker build -t bodylight.js.fmu.compiler "$(pwd)"
 # run docker compiler reads from /input - puts to /output
 sudo docker run -d   --name bodylight.js.fmu.compiler   -v /input:$(pwd)/input -v /output:$(pwd)/output  --rm bodylight.js.fmu.compiler:latest bash worker.sh
 
+
 # Scenarios
+cd /home/vagrant
 git clone https://github.com/creative-connections/Bodylight-Scenarios.git
 
 # VirtualBody
