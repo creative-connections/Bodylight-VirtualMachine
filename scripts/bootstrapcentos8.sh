@@ -1,15 +1,23 @@
 #!/usr/bin/env bash
 set -x
-# Prepares VM with web server, opens ports on firewall
+# Prepares VM based on minimal centos 8 installation, with web server, xfce gui, opens ports on firewall
 # install apache
 
 #chown -R apache:apache /var/www/html
 #chmod -R 644 /var/www/html
 #find /var/www/html -type d -exec chmod ugo+rx {} \;
+dnf --enablerepo=epel -y install xfce4-panel xfce4-session xfce4-settings xfconf xfdesktop xfwm4 sddm xfce4-terminal
+systemctl enable sddm
+systemctl start sddm
 
-yum -y install epel-release
-yum-config-manager --save --setopt=epel/x86_64/metalink.skip_if_unavailable=true
-yum repolist
+systemctl set-default graphical.target
+# automatic login vagrant
+sed -i '/^\[daemon\]/,/^\[security\]/{//!d}' /etc/gdm/custom.conf
+sed -i '/\[daemon\]/ aAutomaticLoginEnable=True\n AutomaticLogin=vagrant' /etc/gdm/custom.conf
+
+#yum -y install epel-release
+#yum-config-manager --save --setopt=epel/x86_64/metalink.skip_if_unavailable=true
+#yum repolist
 
 yum -y install httpd
 #mod_wsgi required by b2note_api
