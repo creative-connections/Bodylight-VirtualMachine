@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -x
+#set -x
 
 #sudo in case this script is executed after installation
 sudo yum install -y wget bzip2

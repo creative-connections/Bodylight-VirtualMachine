@@ -9,7 +9,7 @@ yum -y remove nodejs
 yum -y install nodejs 
 
   cat <<EOF > /etc/httpd/conf.d/bodylight.conf
-Alias "/composer" "/home/vagrant/Bodylight.js-Composer/dist"
+Alias "/composer" "/home/vagrant/Bodylight.js-Composer/dist/"
 <Directory "/home/vagrant/Bodylight.js-Composer/dist">
   Header set Access-Control-Allow-Origin "*"
   Require all granted
@@ -17,7 +17,15 @@ Alias "/composer" "/home/vagrant/Bodylight.js-Composer/dist"
   AllowOverride All
 </Directory> 
 
-Alias "/virtualbody" "/home/vagrant/Bodylight-VirtualBody/dist"
+Alias "/scenarios" "/home/vagrant/Bodylight-Scenarios/"
+<Directory "/home/vagrant/Bodylight-Scenarios">
+  Header set Access-Control-Allow-Origin "*"
+  Require all granted
+  Options FollowSymLinks IncludesNOEXEC
+  AllowOverride All
+</Directory> 
+
+Alias "/virtualbody" "/home/vagrant/Bodylight-VirtualBody/dist/"
 <Directory "/home/vagrant/Bodylight-VirtualBody/dist">
   Header set Access-Control-Allow-Origin "*"
   Require all granted
@@ -43,6 +51,7 @@ cat <<EOF >>/var/www/html/index.html
 <a href="/composer/"><div><u>Bodylight.js Composer</u><ul><li><u>/composer/</u></li><li class="small">installed at <code>/home/vagrant/Bodylight.js-Composer</code></li></ul></div></a>
 <a href="/virtualbody/"><div><u>Virtual Body App</u><ul><li><u>/virtualbody/</u></li><li class="small">installed at <code>/home/vagrant/Bodylight-Scenarios</code></li></ul></div></a>
 <a href="/components/"><div><u>Web Components</u><ul><li><u>/components/</u></li><li class="small">installed at <code>/home/vagrant/Bodylight.js-Components</code></li></ul></div></a>
+<a href="/scenarios/"><div><u>Scenarios</u><ul><li><u>/scenarios/</u></li><li class="small">installed at <code>/home/vagrant/Bodylight-Scenarios</code></li></ul></div></a>
 </body>
 </html>
 EOF

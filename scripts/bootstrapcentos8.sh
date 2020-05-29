@@ -20,7 +20,6 @@ sed -i '/\[daemon\]/ aAutomaticLoginEnable=True\n AutomaticLogin=vagrant' /etc/g
 #yum repolist
 
 yum -y install httpd
-#mod_wsgi required by b2note_api
 #httpd-devel required by pip mod_wsgi 
 
 systemctl start httpd

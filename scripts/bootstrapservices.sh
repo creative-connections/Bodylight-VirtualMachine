@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -x
+#set -x
 yum -q -y install dos2unix
 dos2unix /vagrant/scripts/jupyterinapache.sh
 bash /vagrant/scripts/jupyterinapache.sh add vagrant 8901 /jupyter /var/log/jupyter.log
@@ -28,4 +28,5 @@ set -x
 /home/vagrant/julia-1.3.0/bin/julia -e "using Pkg; Pkg.add(\"IJulia\");"
 sudo systemctl stop jupyter
 sudo systemctl start jupyter
+echo "Bootstrap finished, VM should be created and ready. See web http://localhost:8080/ for further info."
 exit 0
