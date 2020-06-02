@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #set -x
-yum -q -y install dos2unix
+yum -q -y install dos2unix zip unzip
 dos2unix /vagrant/scripts/jupyterinapache.sh
 bash /vagrant/scripts/jupyterinapache.sh add vagrant 8901 /jupyter /var/log/jupyter.log
 # install pyfmi
