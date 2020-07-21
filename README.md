@@ -6,7 +6,7 @@ This repository contains Vagrant scripts to prepare virtual machine in VirtualBo
 
 ## Motivation
 
-Vagrant tool automates configuration and provisioning of virtual machine. The vagrant configuration describes configures shared folders, port forwarding and what base image to be used. During first boot selected image (in our case Scientific Linux 7) is downloaded and bootstrap scripts are launched - they install most updated version of depended software (Apache HTTPD, OpenModelica, Bodylight.js, Conda, Python, Julia, Jupyter).
+Vagrant tool automates configuration (port forwarding, secure ssh keys, shared folders) and provisioning of virtual machine. The vagrant configuration describes configures shared folders, port forwarding and what base image to be used. During first boot selected image (in our case Scientific Linux 7) is downloaded and bootstrap scripts are launched - they install most updated version of depended software (Apache HTTPD, OpenModelica, Bodylight.js, Conda, Python, Julia, Jupyter).
 
 Virtual machine contains all software in tested environment thus preventing claims `works on my machine` or `doesn't work on my machine`.
 Additionally, virtual machine is a reference installation to compare with different environments.
@@ -15,27 +15,27 @@ Additionally, virtual machine is a reference installation to compare with differ
 
 Requirement: 
 - HW: 1 CPU, 2 GB RAM, 5-50GB disk space.
-- OS: Any OS supported by VirtualBox and Vagrant tool (tested on Windows 7,Windows 10, Ubuntu 16.04)
-- SW: Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads) tested version Virtualbox 6.0.14.(( Note we experienced issue VERR_NEM_VM_CREATE_FAILED - need to disable Windows features (V-Host) and see howto setup Windows 10 at https://forums.virtualbox.org/viewtopic.php?f=6&t=93712))
-- SW: Install [Vagrant](https://www.vagrantup.com/downloads.html) tested version 2.2.6
+- OS: Any OS supported by VirtualBox and Vagrant tool (succesfully tested on Windows 7,Windows 10, Ubuntu 16.04, ...)
+- SW: Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads), succesfully tested with version Virtualbox 6.0.14 and 6.1.8 (( Note we experienced issue VERR_NEM_VM_CREATE_FAILED - need to disable Windows features (V-Host) and see howto setup Windows 10 at https://forums.virtualbox.org/viewtopic.php?f=6&t=93712))
+- SW: Install [Vagrant](https://www.vagrantup.com/downloads.html) tested version 2.2.6 and 2.2.9
 
-Some OS has their own distribution of vagrant and virtualbox: `yum install vagrant virtualbox` OR `apt install vagrant virtualbox`.
+Some OS has their own distribution of vagrant and virtualbox, so you may try to use it: `yum install vagrant virtualbox` OR `apt install vagrant virtualbox`.
 
 ## Installation
 
-**(Optional)** Install demo Jupyter notebooks next to the Bodylight-VirtualMachine on host machine, it will appear as /vagrant_data in virtual machine and will be available for jupyter notebook after installation.
+**(Optional)** Clone repository of demo Jupyter notebooks next to the Bodylight-VirtualMachine on host machine, it will appear as /vagrant_data in virtual machine and will be available for jupyter notebook after installation.
 ```bash
 git clone https://github.com/creative-connections/Bodylight-notebooks.git
 ```
 
-**(Required)** Type in your command line:
+**(Required)** Clone repository with Virtual machine scripts and run vagrant up:
 
 ```bash
 git clone https://github.com/creative-connections/Bodylight-VirtualMachine.git
 cd Bodylight-VirtualMachine
 vagrant up
 ```
-This first `vagrant up` takes 15-45 mins (or more depending on network speed). As the bootstrap scripts installs and configures all required software. After that, you should see success.
+This first `vagrant up` takes 15-45 mins (or more depending on network speed) and The bootstrap scripts downloads, installs and configures all required software, ~500 MB of Anaconda (distribution of Python and Jupyter), ~700 MB OpenModelica, ~100 MB Julia and other packages. You may disable some bootstrap script by commenting them in `Vagrantfile`. You should see success:
 ```bash
     ...
     default:     [yLpj] (webpack)/buildin/global.js 472 bytes {0} [built]
@@ -43,7 +43,6 @@ This first `vagrant up` takes 15-45 mins (or more depending on network speed). A
 ```
 
 1.5 GB of depended packages (OpenModelica, Anaconda, Julia) are downloaded and persisted in host `/cache` subdirectory during installation. Use `vagrant destroy` to erase virtual machine and `vagrant up` to create virtual machine from scratch again - the `/cache` subdirectory is used to save (not eliminate) network bandwith. Delete `/cache` subdirectory manually if you do not need it or plan to make virtual machine from scratch all from Internet resources again.
-
 
 ## Update
 
@@ -58,7 +57,7 @@ git pull
 # try: git stash;git pull;git stash apply
 vagrant up
 ```
-This will clean VM and install the software again - if `/cache` is present from previous installation it will use it rather to download again from Internet repositories.
+This will clean VM and install the software again - if `/cache` is present from previous installation it will use most packages from it rather to download again from Internet repositories.
 
 ## After installation
 
@@ -72,6 +71,9 @@ The default installation contains these applications, some available from web in
   * Bodylight components - Bodylight.js-FMU-Compiler, 
   * Bodylight.js-Composer - refer http://localhost:8080/composer/
   * Bodylight-Scenarios - refer http://localhost:8080/virtualbody/
+  
+You may access virtual desktop using VirtualBox capabilities or you may access using `vagrant ssh`.
+
 If you don't need VM, you can halt it using Virtualbox UI or using
 ```bash
 vagrant halt
