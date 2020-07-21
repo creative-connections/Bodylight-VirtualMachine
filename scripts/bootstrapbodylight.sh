@@ -117,6 +117,7 @@ git clone https://github.com/creative-connections/Bodylight.js-FMU-Compiler.git
 cd Bodylight.js-FMU-Compiler
 sudo docker build -t bodylight.js.fmu.compiler "$(pwd)"
 sudo systemctl start bodylight-compiler
+mkdir -p /home/vagrant/Bodylight.js-FMU-Compiler/input Bodylight.js-FMU-Compiler/output
 chmod ugo+rwx /home/vagrant/Bodylight.js-FMU-Compiler/input Bodylight.js-FMU-Compiler/output
 
 # run docker compiler reads from /input - puts to /output
