@@ -55,6 +55,29 @@ Alias "/compiler" "/home/vagrant/Bodylight.js-FMU-Compiler/"
 
 EOF
 service httpd reload
+echo setting bodylight-compiler service
+cat <<EOF >>/etc/systemd/system/bodylight-compiler.service
+[Unit]
+Description=Bodylight Compiler Service
+
+[Service]
+Type=simple
+PIDFile=/var/run/bodylight-compiler-service.pid
+User=root
+ExecStart=/home/vagrant/Bodylight.js-FMU-Compiler/run.sh
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=bodylight-compiler
+WorkingDirectory=/home/vagrant/Bodylight.js-FMU-Compiler
+
+[Install]
+WantedBy=multi-user.target
+EOF
+#sudo -u vagrant $INSTALLDIR/bin/jupyter notebook --port $3 --no-browser &
+systemctl enable bodylight-compiler
+# systemctl start bodylight-compiler
+
+
 
 # add reference to index.html
 head -n -2 /var/www/html/index.html > temp.txt ; mv temp.txt /var/www/html/index.html
@@ -93,27 +116,8 @@ cd /home/vagrant
 git clone https://github.com/creative-connections/Bodylight.js-FMU-Compiler.git
 cd Bodylight.js-FMU-Compiler
 sudo docker build -t bodylight.js.fmu.compiler "$(pwd)"
-echo setting bodylight-compiler service
-cat <<EOF >>/etc/systemd/system/bodylight-compiler.service
-[Unit]
-Description=Bodylight Compiler Service
-
-[Service]
-Type=simple
-PIDFile=/var/run/bodylight-compiler-service.pid
-User=vagrant
-ExecStart=/home/vagrant/Bodylight.js-FMU-Compiler/run.sh
-StandardOutput=syslog
-StandardError=syslog
-SyslogIdentifier=bodylight-compiler
-WorkingDirectory=/home/vagrant/Bodylight.js-FMU-Compiler
-
-[Install]
-WantedBy=multi-user.target
-EOF
-#sudo -u vagrant $INSTALLDIR/bin/jupyter notebook --port $3 --no-browser &
-systemctl enable bodylight-compiler
-systemctl start bodylight-compiler
+sudo systemctl start bodylight-compiler
+chmod ugo+rwx /home/vagrant/Bodylight.js-FMU-Compiler/input Bodylight.js-FMU-Compiler/output
 
 # run docker compiler reads from /input - puts to /output
 # sudo docker run -d --name bodylight.js.fmu.compiler   -v $(pwd)/input:/input -v $(pwd)/output:/output --rm bodylight.js.fmu.compiler:latest bash worker.sh
