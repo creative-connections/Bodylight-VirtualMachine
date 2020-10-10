@@ -33,8 +33,17 @@ Alias "/virtualbody" "/home/vagrant/Bodylight-VirtualBody/dist/"
   AllowOverride All
 </Directory>
 
-Alias "/components" "/home/vagrant/Bodylight.js-Components/webcomponents/dist/"
-<Directory "/home/vagrant/Bodylight.js-Components/webcomponents/dist">
+Alias "/components" "/home/vagrant/aurelia-bodylight-plugin/docs/"
+<Directory "/home/vagrant/aurelia-bodylight-plugin/docs">
+  Header set Access-Control-Allow-Origin "*"
+  Require all granted
+  Options +Indexes +FollowSymLinks +IncludesNOEXEC
+  IndexOptions FancyIndexing HTMLTable
+  AllowOverride All
+</Directory>
+
+Alias "/webcomponents" "/home/vagrant/Bodylight.js-Components/"
+<Directory "/home/vagrant/Bodylight.js-Components">
   Header set Access-Control-Allow-Origin "*"
   Require all granted
   Options +Indexes +FollowSymLinks +IncludesNOEXEC
@@ -44,6 +53,17 @@ Alias "/components" "/home/vagrant/Bodylight.js-Components/webcomponents/dist/"
 
 Alias "/compiler" "/home/vagrant/Bodylight.js-FMU-Compiler/"
 <Directory "/home/vagrant/Bodylight.js-FMU-Compiler">
+  Options +ExecCGI
+  AddHandler cgi-script .py
+  Header set Access-Control-Allow-Origin "*"
+  Require all granted
+  Options +Indexes +FollowSymLinks +IncludesNOEXEC
+  IndexOptions FancyIndexing HTMLTable NameWidth=*
+  AllowOverride All
+</Directory>
+
+Alias "/editor" "/home/vagrant/Bodylight-Editor/dist/"
+<Directory "/home/vagrant/Bodylight-Editor/dist">
   Options +ExecCGI
   AddHandler cgi-script .py
   Header set Access-Control-Allow-Origin "*"
@@ -84,9 +104,11 @@ head -n -2 /var/www/html/index.html > temp.txt ; mv temp.txt /var/www/html/index
 cat <<EOF >>/var/www/html/index.html
 <a href="/composer/"><div><u>Bodylight.js Composer</u><ul><li><u>/composer/</u></li><li class="small">installed at <code>/home/vagrant/Bodylight.js-Composer</code></li></ul></div></a>
 <a href="/virtualbody/"><div><u>Virtual Body App</u><ul><li><u>/virtualbody/</u></li><li class="small">installed at <code>/home/vagrant/Bodylight-Scenarios</code></li></ul></div></a>
-<a href="/components/"><div><u>Web Components</u><ul><li><u>/components/</u></li><li class="small">installed at <code>/home/vagrant/Bodylight.js-Components</code></li></ul></div></a>
+<a href="/components/"><div><u>Web Components</u><ul><li><u>/components/</u></li><li class="small">installed at <code>/home/vagrant/aurelia-bodylight-plugin</code></li></ul></div></a>
+<a href="/components/"><div><u>Web Components Demo</u><ul><li><u>/webcomponents/</u></li><li class="small">installed at <code>/home/vagrant/Bodylight.js-Components</code></li></ul></div></a>
 <a href="/scenarios/"><div><u>Scenarios</u><ul><li><u>/scenarios/</u></li><li class="small">installed at <code>/home/vagrant/Bodylight-Scenarios</code></li></ul></div></a>
 <a href="/compiler/"><div><u>Bodylight.js Compiler</u><ul><li><u>/compiler/</u></li><li class="small">installed at <code>/home/vagrant/Bodylight.js-FMU-Compiler</code></li></ul></div></a>
+<a href="/editor/"><div><u>Bodylight Editor</u><ul><li><u>/editor/</u></li><li class="small">installed at <code>/home/vagrant/Bodylight-Editor</code></li></ul></div></a>
 
 </body>
 </html>
@@ -139,10 +161,22 @@ au build
 
 # components
 cd /home/vagrant
+git clone https://github.com/creative-connections/aurelia-bodylight-plugin.git
+cd aurelia-bodylight-plugin
+npm install
+au build
+
+# webcomponents
+cd /home/vagrant
 git clone https://github.com/creative-connections/Bodylight.js-Components.git
-cd Bodylight.js-Components/webcomponents/
-# git checkout dev-tomas
-# build components app
+cd Bodylight.js-Components
+npm install
+au build
+
+# editor
+cd /home/vagrant
+git clone https://github.com/creative-connections/Bodylight-Editor.git
+cd Bodylight-Editor
 npm install
 au build
 
