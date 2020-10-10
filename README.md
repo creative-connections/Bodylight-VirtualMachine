@@ -21,21 +21,25 @@ Requirement:
 
 Some OS has their own distribution of vagrant and virtualbox, so you may try to use it: `yum install vagrant virtualbox` OR `apt install vagrant virtualbox`.
 
-## Installation
+## Pre installation steps
 
-**(Optional)** Clone repository of demo Jupyter notebooks next to the Bodylight-VirtualMachine on host machine, it will appear as /vagrant_data in virtual machine and will be available for jupyter notebook after installation.
+**(Optional)** This is not required, but recommended step to clone repository of demo Jupyter notebooks and/or Physiolibrary-models next to the Bodylight-VirtualMachine on host machine,
+it will appear as /vagrant_data in virtual machine and will be available for jupyter notebook after installation
 ```bash
 git clone https://github.com/creative-connections/Bodylight-notebooks.git
+git clone https://github.com/creative-connections/Physiolibrary-models.git
 ```
 
-**(Required)** Clone repository with Virtual machine scripts and run vagrant up:
+## Installation
+
+Clone repository with Virtual machine scripts and run vagrant up:
 
 ```bash
 git clone https://github.com/creative-connections/Bodylight-VirtualMachine.git
 cd Bodylight-VirtualMachine
 vagrant up
 ```
-This first `vagrant up` takes 15-45 mins (or more depending on network speed) and The bootstrap scripts downloads, installs and configures all required software, ~500 MB of Anaconda (distribution of Python and Jupyter), ~700 MB OpenModelica, ~100 MB Julia and other packages. You may disable some bootstrap script by commenting them in `Vagrantfile`. You should see success:
+The first `vagrant up` takes 15-45 mins (or more depending on network speed) and The bootstrap scripts downloads, installs and configures all required software, ~500 MB of Anaconda (distribution of Python and Jupyter), ~700 MB OpenModelica, ~100 MB Julia and other packages. You may disable some bootstrap script by commenting them in `Vagrantfile`. You should see success:
 ```bash
     ...
     default:     [yLpj] (webpack)/buildin/global.js 472 bytes {0} [built]
@@ -48,7 +52,7 @@ This first `vagrant up` takes 15-45 mins (or more depending on network speed) an
 
 If you have previously installed VM and would like to update or reinstall from scratch, do:
   1. If you have any data stored in VM, save it to external storage - e.g. to shared folder `/vagrant` folder.
-  2. Then to update VM environment: destroy VM, do git pull and create VM from scratch again by:
+  2. Then destroy VM, do git pull and create VM from scratch again by:
 
 ```bash
 vagrant destroy
@@ -68,9 +72,11 @@ The default installation contains these applications, some available from web in
   * Jupyter notebook with Modelica kernel, link http://localhost:8080/jupyter/ [1]
   * OpenModelica (v 1.14) - use e.g. `OMEdit` [2]
   * Python v3 - including full Anaconda environment
-  * Bodylight components - Bodylight.js-FMU-Compiler, 
+  * Bodylight.js-components - HTML web components - documentation and usage at http://localhost:8080/components/
+  * Bodylight.js-FMU-Compiler refer http://localhost:8080/compiler/ 
   * Bodylight.js-Composer - refer http://localhost:8080/composer/
-  * Bodylight-Scenarios - refer http://localhost:8080/virtualbody/
+  * Bodylight-Scenarios - Scenarios written in MD using web components http://localhost:8080/scenarios/
+  * Bodylight-VirtualBody - Virtualbody using WebGL http://localhost:8080/virtualbody/
   
 You may access virtual desktop using VirtualBox capabilities or you may access using `vagrant ssh`.
 
