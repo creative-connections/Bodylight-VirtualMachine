@@ -25,5 +25,6 @@ set -x
 /home/vagrant/jupyter/bin/pip install -q DyMat SALib 
 sudo systemctl stop jupyter
 sudo systemctl start jupyter
+sudo systemctl start httpd
 echo "Bootstrap finished, VM should be created and ready. See web http://localhost:8080/ for further info."
 exit 0
