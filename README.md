@@ -14,31 +14,37 @@ Additionally, virtual machine is a reference installation to compare with differ
 ## Requirements
 
 Requirement: 
-- HW: 1 CPU, 2 GB RAM, 5-50GB disk space.
+- HW: minimum 1 CPU, 4 GB RAM, min 5GB disk space.
 - OS: Any OS supported by VirtualBox and Vagrant tool (succesfully tested on Windows 7,Windows 10, Ubuntu 16.04, ...)
 - SW: Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads), succesfully tested with version Virtualbox 6.0.14 and 6.1.8 (( Note we experienced issue VERR_NEM_VM_CREATE_FAILED - need to disable Windows features (V-Host) and see howto setup Windows 10 at https://forums.virtualbox.org/viewtopic.php?f=6&t=93712))
 - SW: Install [Vagrant](https://www.vagrantup.com/downloads.html) tested version 2.2.6 and 2.2.9
+- SW: (optional, but recommended, but you may download master.zip instead directly - see notes after `git clone ...` bellow) Install [GIT](https://git-scm.com/download) any version. 
 
-Some OS has their own distribution of vagrant and virtualbox, so you may try to use it: `yum install vagrant virtualbox` OR `apt install vagrant virtualbox`.
+Some OS has their own distribution of `vagrant`, `virtualbox` and `git`, so you may try to use it: `yum install vagrant virtualbox git` OR `apt install vagrant virtualbox git`.
 
 ## Pre installation steps
 
 **(Optional)** This is not required, but recommended step to clone repository of demo Jupyter notebooks and/or Physiolibrary-models next to the Bodylight-VirtualMachine on host machine,
-it will appear as /vagrant_data in virtual machine and will be available for jupyter notebook after installation
+it will appear as /vagrant_data in virtual machine and will be available for jupyter notebook after installation.
+In command-line (Linux `xterm`, `bash` etc. for Windows `Start-> type 'cmd' -> choos 'Command Prompt'`) do:
 ```bash
 git clone https://github.com/creative-connections/Bodylight-notebooks.git
 git clone https://github.com/creative-connections/Physiolibrary-models.git
 ```
+If you do not have `git`, download and unzip master.ZIP from https://github.com/creative-connections/Bodylight-notebooks/archive/master.zip 
+and https://github.com/creative-connections/Physiolibrary-models/archive/master.zip
+
 
 ## Installation
 
-Clone repository with Virtual machine scripts and run vagrant up:
-
+Clone repository with Virtual machine scripts and run vagrant up (In command-line (Linux `xterm`, `bash` etc. for Windows `Start-> type 'cmd' -> choos 'Command Prompt'`) do)
 ```bash
 git clone https://github.com/creative-connections/Bodylight-VirtualMachine.git
 cd Bodylight-VirtualMachine
 vagrant up
 ```
+If you do not have `git` then you may download and unzip manually the https://github.com/creative-connections/Bodylight-VirtualMachine/archive/master.zip and do `vagrant up` in the unzipped directory.
+
 The first `vagrant up` takes 15-45 mins (or more depending on network speed) and The bootstrap scripts downloads, installs and configures all required software, ~500 MB of Anaconda (distribution of Python and Jupyter), ~700 MB OpenModelica, ~100 MB Julia and other packages. You may disable some bootstrap script by commenting them in `Vagrantfile`. You should see success:
 ```bash
     ...
@@ -46,7 +52,7 @@ The first `vagrant up` takes 15-45 mins (or more depending on network speed) and
     default: + exit 0
 ```
 
-1.5 GB of depended packages (OpenModelica, Anaconda, Julia) are downloaded and persisted in host `/cache` subdirectory during installation. Use `vagrant destroy` to erase virtual machine and `vagrant up` to create virtual machine from scratch again - the `/cache` subdirectory is used to save (not eliminate) network bandwith. Delete `/cache` subdirectory manually if you do not need it or plan to make virtual machine from scratch all from Internet resources again.
+1.5 GB of depended packages (OpenModelica, Anaconda, Julia) are downloaded and persisted in host `/cache` subdirectory during installation. 
 
 ## Update
 
@@ -118,7 +124,8 @@ To destroy VM and remove all VM files do the following. The files stored in shar
 ```bash
 vagrant destroy
 ```
-and optionally delete cache of installation packages in 
+
+There are preserved OpenModelica and Python (Anaconda) installation binaries in `/cache` directory. Delete cache if you don't need it anymore 
 ```bash
 rm -rf cache
 ```
@@ -130,3 +137,5 @@ References:
 * [3] vagrant https://vagrantup.com
 * [4] virtualbox https://www.virtualbox.com
 * [5] Anaconda https://anaconda.org/
+* [6] GIT https://git-scm.com
+* 
