@@ -11,7 +11,7 @@ exit $?
 set -x 
 # install pyfmi and mamba
 /home/vagrant/jupyter/bin/conda init
-/home/vagrant/jupyter/bin/conda install -q -y -c conda-forge pyfmi=2.7.2
+/home/vagrant/jupyter/bin/conda install -q -y -c conda-forge fmpy
 # SOS notebooks - deprecating
 # n=0
 # until [ $n -ge 5 ]
@@ -23,9 +23,6 @@ set -x
 # done
 # SALib for sensitivity analysis, DyMat for opening Modelica MAT files in Python
 /home/vagrant/jupyter/bin/pip install -q DyMat SALib 
-# optionally install julia dependencies for jupyter (ijulia) and demo notebook using rdatasets
-# Pkg.add(\"RDatasets\");Pkg.add(\"Gadfly\")
-/home/vagrant/julia-1.3.0/bin/julia -e "using Pkg; Pkg.add(\"IJulia\");"
 sudo systemctl stop jupyter
 sudo systemctl start jupyter
 echo "Bootstrap finished, VM should be created and ready. See web http://localhost:8080/ for further info."

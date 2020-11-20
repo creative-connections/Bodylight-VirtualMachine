@@ -3,23 +3,31 @@ set -x
 # bootstraps openmodelica and configures it with jupyter nb
 # openmodelica, blas-devel and lapack-devel required for OMC, it also installs gcc,c++,c compilers
 INSTALLDIR=/home/vagrant/jupyter
-wget https://build.openmodelica.org/rpm/el7/omc.repo -O /etc/yum.repos.d/omc.repo
+wget -q https://build.openmodelica.org/rpm/el7/omc.repo -O /etc/yum.repos.d/omc.repo
 
 # check if local rpm downloaded - install from them otherwise download and install
+# OM 1.14 deprecated
+# yum install -y yum-plugin-downloadonly
+# mkdir -p /vagrant/cache
+#if [ ! -f /vagrant/cache/openmodelica-1.14-1.14.1-2.el7.x86_64.rpm ]; then
+#  yum install --downloadonly --downloaddir=/vagrant/cache openmodelica-1.14 blas-devel lapack-devel omniORB
+#fi 
+
+## OM 1.16
+yum -y -q install yum-conf-repos yum-conf-softwarecollections
+yum -y -q install devtoolset-8
 yum install -y yum-plugin-downloadonly
 mkdir -p /vagrant/cache
-if [ ! -f /vagrant/cache/openmodelica-1.14-1.14.1-2.el7.x86_64.rpm ]; then
-  yum install --downloadonly --downloaddir=/vagrant/cache openmodelica-1.14 blas-devel lapack-devel omniORB
+if [ ! -f /vagrant/cache/openmodelica-1.16* ]; then
+  yum install -y --downloadonly --downloaddir=/vagrant/cache openmodelica-1.16 blas-devel lapack-devel omniORB
 fi 
-
-#yum install -y openmodelica-1.14 blas-devel lapack-devel omniORB
 #this is installing from local cache downloaded before
-yum -y -q install /vagrant/cache/*.rpm    
+yum -y install /vagrant/cache/*.rpm    
 
 # omniorb
 #yum install -y omniORB
 # zeromq
-wget https://download.opensuse.org/repositories/network:/messaging:/zeromq:/release-draft/CentOS_7/network:messaging:zeromq:release-draft.repo -O /etc/yum.repos.d/zeromq.repo
+wget -q https://download.opensuse.org/repositories/network:/messaging:/zeromq:/release-draft/CentOS_7/network:messaging:zeromq:release-draft.repo -O /etc/yum.repos.d/zeromq.repo
 yum install -y zeromq 
 
 # set correct conda environment, bug openmodelica kernel not available

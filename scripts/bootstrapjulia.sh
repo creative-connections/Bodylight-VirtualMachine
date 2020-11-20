@@ -10,4 +10,5 @@ if [ ! -f /vagrant/cache/julia.tar.gz ]; then
 fi
 cd /home/vagrant
 tar -xzf /vagrant/cache/julia.tar.gz
-#install julia depended packages in bootstrapservices
+##install julia depended packages in bootstrapjuliaservices
+#
