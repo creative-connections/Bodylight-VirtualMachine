@@ -8,7 +8,6 @@
 Vagrant.configure("2") do |config|
 
   config.vm.box = "westlife-eu/scientific_7_gui"
-
   config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
 
   config.vm.provider "virtualbox" do |vb|
@@ -19,6 +18,8 @@ Vagrant.configure("2") do |config|
      vb.memory = "4096"
      vb.cpus = "2"
      vb.customize ["modifyvm", :id, "--vram", "128"]
+     vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]      
+     vb.name = "Bodylight-VirtualMachine"
   end
  
   puts "vagrant version:"
