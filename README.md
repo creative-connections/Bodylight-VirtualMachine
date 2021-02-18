@@ -37,6 +37,7 @@ and https://github.com/creative-connections/Physiolibrary-models/archive/master.
 
 ## Installation
 
+### Most updated version of all software
 Clone repository with Virtual machine scripts and run vagrant up (In command-line (Linux `xterm`, `bash` etc. for Windows `Start-> type 'cmd' -> choos 'Command Prompt'`) do)
 ```bash
 git clone https://github.com/creative-connections/Bodylight-VirtualMachine.git
@@ -53,6 +54,17 @@ The first `vagrant up` takes 15-45 mins (or more depending on network speed) and
 ```
 
 1.5 GB of depended packages (OpenModelica, Anaconda, Julia) are downloaded and persisted in host `/cache` subdirectory during installation. 
+
+### Precompiled release of VM
+Choose precompiled version e.g. `bodylightvm.20.11`   
+```bash
+git clone https://github.com/creative-connections/Bodylight-VirtualMachine.git
+cd Bodylight-VirtualMachine
+cd bodylightvm.20.11
+vagrant up
+```
+
+This will download and instantiate complete image (4.6 GB). There will be no further installation,compilation etc. 
 
 ## Update
 
