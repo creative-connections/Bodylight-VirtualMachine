@@ -2,14 +2,11 @@
 
 # Virtual machine for Bodylight.js
 
-This repository contains Vagrant scripts to prepare virtual machine in VirtualBox with development environment for Bodylight technology. After installation the Virtual Machine contains preinstalled and preconfigured tools (OpenModelica, Bodylight.js, Python, Julia, Jupyter and Anaconda) and is accessible as local web page (http://localhost:8080).  
+This repository contains Vagrant scripts to prepare virtual machine in VirtualBox from scratch or from preinstalled binary image. After installation Scientific Linux (clone of Redhat Enterprise Linux) and OpenModelica, Bodylight.js, Python 3.x, Julia, Jupyter, Anaconda is available. See web apps after installation at http://localhost:8080.  
 
 ## Motivation
 
-Vagrant tool automates configuration (port forwarding, secure ssh keys, shared folders) and provisioning of virtual machine. The vagrant configuration describes configures shared folders, port forwarding and what base image to be used. During first boot selected image (in our case Scientific Linux 7) is downloaded and bootstrap scripts are launched - they install most updated version of depended software (Apache HTTPD, OpenModelica, Bodylight.js, Conda, Python, Julia, Jupyter).
-
-Virtual machine contains all software in tested environment thus preventing claims `works on my machine` or `doesn't work on my machine`.
-Additionally, virtual machine is a reference installation to compare with different environments.
+Vagrant tool automates configuration (port forwarding, secure ssh keys, shared folders) and provisioning of virtual machine. Thus preventing claims `works on my machine` or `doesn't work on my machine`. Virtual machine is a reference installation to compare with different environments.
 
 ## Requirements
 
@@ -58,7 +55,7 @@ The first `vagrant up` takes 15-45 mins (or more depending on network speed) and
 1.5 GB of depended packages (OpenModelica, Anaconda, Julia) are downloaded and persisted in host `/cache` subdirectory during installation. 
 
 ### From binary image
-   
+briefly: replace `Vagrantfile` with `Vagrantfile.preinstalled` where scripts are modified to download prepared image and configure the machine only.
 In linux BASH:   
 ```bash
 git clone https://github.com/creative-connections/Bodylight-VirtualMachine.git
@@ -80,8 +77,8 @@ This will download and instantiate complete image (4.6 GB). There will be no fur
 ## Update
 
 If you have previously installed VM and would like to update or reinstall from scratch, do:
-  1. If you have any data stored in VM, save it to external storage - e.g. to shared folder `/vagrant` folder.
-  2. Then destroy VM, do git pull and create VM from scratch again by:
+  1. Save any documents/data from VM to shared folder `/vagrant` folder. Other files and data will be erased.
+  2. Then do following:
 
 ```bash
 vagrant destroy
