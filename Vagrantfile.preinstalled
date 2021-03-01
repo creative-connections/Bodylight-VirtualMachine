@@ -8,7 +8,7 @@
 
 $script = <<-'SCRIPT'
 echo installing unzip needed by Bodylight.js-FMU-Compiler
-yum -y install unzip
+yum -y install unzip zip
 date > /etc/vagrant_provisioned_at
 SCRIPT
 
