@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org//creative-connections/Bodylight-VirtualMachine.svg?branch=master)](https://travis-ci.org//creative-connections/Bodylight-VirtualMachine)
-
+[![DOI](https://zenodo.org/badge/203830641.svg)](https://zenodo.org/badge/latestdoi/203830641)
 # Virtual machine for Bodylight.js
 
 This repository contains Vagrant scripts to prepare virtual machine in VirtualBox from scratch or from preinstalled binary image. After installation Scientific Linux (clone of Redhat Enterprise Linux) and OpenModelica, Bodylight.js, Python 3.x, Julia, Jupyter, Anaconda is available. See web apps after installation at http://localhost:8080.  
