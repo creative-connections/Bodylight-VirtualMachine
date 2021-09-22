@@ -19,14 +19,14 @@ yum -y -q install devtoolset-8
 yum install -y yum-plugin-downloadonly
 mkdir -p /vagrant/cache
 if [ ! -f /vagrant/cache/openmodelica-1.16* ]; then
-  yum install -y --downloadonly --downloaddir=/vagrant/cache openmodelica-1.16 blas-devel lapack-devel omniORB
+  yum install -y --downloadonly --downloaddir=/vagrant/cache openmodelica-nightly-1.18.0~dev~386~g13ce532-1.el7.x86_64 blas-devel lapack-devel omniORB
 fi 
 #this is installing from local cache downloaded before
 yum -y install /vagrant/cache/*.rpm    
 
 # omniorb
 #yum install -y omniORB
-# zeromq
+# zeromq required by ompython and jupyter 
 wget -q https://download.opensuse.org/repositories/network:/messaging:/zeromq:/release-draft/CentOS_7/network:messaging:zeromq:release-draft.repo -O /etc/yum.repos.d/zeromq.repo
 yum install -y zeromq 
 

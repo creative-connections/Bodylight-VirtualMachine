@@ -15,11 +15,11 @@ Vagrant.configure("2") do |config|
      vb.gui = true
   #
   #   # Customize the amount of memory on the VM:
-     vb.memory = "4096"
+     vb.memory = "8192"
      vb.cpus = "2"
      vb.customize ["modifyvm", :id, "--vram", "128"]
      vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]      
-     vb.name = "Bodylight-VirtualMachine"
+     vb.name = "Bodylight-VirtualMachine-2109"
   end
  
   puts "vagrant version:"
