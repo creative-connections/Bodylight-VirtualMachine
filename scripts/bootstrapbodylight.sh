@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 set -x
 
-yum -y install git
+#remove old git if present
+yum -y remove git
+# install git 2.x
+yum -y install https://packages.endpoint.com/rhel/7/os/x86_64/endpoint-repo-1.9-1.x86_64.rpm
+yum -y install git     
 # nodejs
 #curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo bash -
 curl -sL https://rpm.nodesource.com/setup_14.x | bash -

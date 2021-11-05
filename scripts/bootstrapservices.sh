@@ -11,7 +11,7 @@ exit $?
 set -x 
 # install pyfmi and mamba
 /home/vagrant/jupyter/bin/conda init
-/home/vagrant/jupyter/bin/conda install -q -y -c conda-forge fmpy
+/home/vagrant/jupyter/bin/conda install -q -y -c conda-forge fmpy psutil
 # SOS notebooks - deprecating
 # n=0
 # until [ $n -ge 5 ]

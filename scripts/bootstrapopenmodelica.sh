@@ -16,10 +16,11 @@ wget -q https://build.openmodelica.org/rpm/el7/omc.repo -O /etc/yum.repos.d/omc.
 ## OM 1.16
 yum -y -q install yum-conf-repos yum-conf-softwarecollections
 yum -y -q install devtoolset-8
+yum -y -q install lapack-static openblas-static blas-static
 yum install -y yum-plugin-downloadonly
 mkdir -p /vagrant/cache
-if [ ! -f /vagrant/cache/openmodelica-1.16* ]; then
-  yum install -y --downloadonly --downloaddir=/vagrant/cache openmodelica-nightly-1.18.0~dev~386~g13ce532-1.el7.x86_64 blas-devel lapack-devel omniORB
+if [ ! -f /vagrant/cache/openmodelica* ]; then
+  yum install -y --downloadonly --downloaddir=/vagrant/cache openmodelica-nightly blas-devel lapack-devel lapack-static openblas-static blas-static omniORB
 fi 
 #this is installing from local cache downloaded before
 yum -y install /vagrant/cache/*.rpm    
