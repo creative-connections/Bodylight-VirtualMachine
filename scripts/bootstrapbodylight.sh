@@ -77,6 +77,15 @@ Alias "/editor" "/home/vagrant/Bodylight-Editor/dist/"
   AllowOverride All
 </Directory>
 
+Alias "/vr" "/home/vagrant/VR/"
+<Directory "/home/vagrant/VR">
+  Header set Access-Control-Allow-Origin "*"
+  Require all granted
+  Options +Indexes +FollowSymLinks +IncludesNOEXEC
+  IndexOptions FancyIndexing HTMLTable
+  AllowOverride All
+</Directory>
+
 EOF
 service httpd reload
 echo setting bodylight-compiler service
@@ -184,7 +193,12 @@ sudo systemctl start bodylight-compiler
 cd /home/vagrant
 git clone https://github.com/creative-connections/Bodylight-Scenarios.git
 
+# VR
+cd /home/vagrant
+git clone https://github.com/creative-connections/VR.git
+
 # VirtualBody
+cd /home/vagrant
 git clone https://github.com/creative-connections/Bodylight-VirtualBody.git
 cd Bodylight-VirtualBody
 # cache gltf files used in
