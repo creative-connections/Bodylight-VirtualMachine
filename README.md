@@ -82,12 +82,13 @@ If you have previously installed VM and would like to update or reinstall from s
 
 ```bash
 vagrant destroy
+vagrant box update
 git pull
 # if you made some local changes to Vagrantfile - git pull may fail, 
 # try: git stash;git pull;git stash apply
 vagrant up
 ```
-This will clean VM and install the software again - if `/cache` is present from previous installation it will use most packages from it rather to download again from Internet repositories.
+This will clean VM,checkand update the base box and install the software again - if `/cache` is present from previous installation it will use most packages from it rather to download again from Internet repositories.
 
 ## After installation
 
