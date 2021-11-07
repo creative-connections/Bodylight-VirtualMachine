@@ -124,7 +124,7 @@ cat <<EOF >>/var/www/html/index.html
 <a href="/scenarios/"><div><u>Scenarios</u><ul><li><u>/scenarios/</u></li><li class="small">installed at <code>/home/vagrant/Bodylight-Scenarios</code></li></ul></div></a>
 <a href="/compiler/"><div><u>Bodylight.js Compiler</u><ul><li><u>/compiler/</u></li><li class="small">installed at <code>/home/vagrant/Bodylight.js-FMU-Compiler</code></li></ul></div></a>
 <a href="/editor/"><div><u>Bodylight Editor</u><ul><li><u>/editor/</u></li><li class="small">installed at <code>/home/vagrant/Bodylight-Editor</code></li></ul></div></a>
-
+<a href="/vr/"><div><u>Virtual Reality</u><ul><li><u>/vr/</u></li><li class="small">installed at <code>/home/vagrant/VR</code></li></ul></div></a>
 </body>
 </html>
 EOF
