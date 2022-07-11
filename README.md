@@ -35,7 +35,32 @@ and https://github.com/creative-connections/Physiolibrary-models/archive/master.
 
 ## Installation
 
-Choose either installation from sources or binary VM installation
+Choose either installation from sources or binary VM installation.
+
+### From binary image 
+
+* replace `Vagrantfile` with `Vagrantfile.preinstalled` where scripts are modified to download prepared image and configure the machine only.
+In linux BASH:   
+```bash
+git clone https://github.com/creative-connections/Bodylight-VirtualMachine.git
+cd Bodylight-VirtualMachine
+cp Vagrantfile.preinstalled Vagrantfile
+```
+
+or in windows command
+```cmd
+git clone https://github.com/creative-connections/Bodylight-VirtualMachine.git
+cd Bodylight-VirtualMachine
+copy /Y Vagrantfile.preinstalled Vagrantfile
+```
+
+* Download manually box file (4.6GB) from https://filedn.com/lHGc7w3H4jOpIe46u1nPt57/BodyligthVMImage/21.10/bodylightvm.box
+* place the box file next to the Vagrantfile
+* start vagrant up by 
+```bash
+vagrant up 
+```
+
 
 ### From sources - default
 Clone repository with Virtual machine scripts and run vagrant up (In command-line (Linux `xterm`, `bash` etc. for Windows `Start-> type 'cmd' -> choos 'Command Prompt'`) do)
@@ -56,25 +81,6 @@ The first `vagrant up` takes 15-45 mins (or more depending on network speed) and
 1.5 GB of depended packages (OpenModelica, Anaconda, Julia) are downloaded and persisted in host `/cache` subdirectory during installation. 
 
 ### From binary image
-briefly: replace `Vagrantfile` with `Vagrantfile.preinstalled` where scripts are modified to download prepared image and configure the machine only.
-In linux BASH:   
-```bash
-git clone https://github.com/creative-connections/Bodylight-VirtualMachine.git
-cd Bodylight-VirtualMachine
-cp Vagrantfile.preinstalled Vagrantfile
-vagrant up
-```
-
-or in windows command
-```cmd
-git clone https://github.com/creative-connections/Bodylight-VirtualMachine.git
-cd Bodylight-VirtualMachine
-copy /Y Vagrantfile.preinstalled Vagrantfile
-vagrant up
-```
-
-This will download and instantiate complete image (4.6 GB). There will be no further installation,compilation etc. 
-
 ## Update
 
 If you have previously installed VM and would like to update or reinstall from scratch, do:
