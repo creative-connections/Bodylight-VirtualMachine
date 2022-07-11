@@ -16,7 +16,8 @@ Vagrant.configure("2") do |config|
 
   # config.vm.box = "https://filedn.com/lHGc7w3H4jOpIe46u1nPt57/BodyligthVMImage/20.11/bodylightvm.box"
   # config.vm.box = "https://filedn.com/lHGc7w3H4jOpIe46u1nPt57/BodyligthVMImage/21.02/bodylightvm.box"
-  config.vm.box = "https://filedn.com/lHGc7w3H4jOpIe46u1nPt57/BodyligthVMImage/21.10/bodylightvm.box"
+  # config.vm.box = "https://filedn.com/lHGc7w3H4jOpIe46u1nPt57/BodyligthVMImage/21.10/bodylightvm.box"
+  config.vm.box = "bodylightvm.box"
 
   config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
 
