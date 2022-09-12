@@ -2,12 +2,14 @@
 [![DOI](https://zenodo.org/badge/203830641.svg)](https://zenodo.org/badge/latestdoi/203830641)
 # Virtual machine for Bodylight.js
 
-This repository contains Vagrant scripts to prepare virtual machine in VirtualBox from scratch or from preinstalled binary image. After installation Scientific Linux (clone of Redhat Enterprise Linux) and OpenModelica, Bodylight.js, Python 3.x, Julia, Jupyter, Anaconda is available. See web apps after installation at http://localhost:8080.  
+This repository contains scripts and configuration to create development environment for Bodylight tool chain. Base box is minimal Scientific Linux and Vagrant scripts prepare the rest of virtual machine with OpenModelica, Bodylight.js, Python 3.x, Julia, Jupyter, Anaconda, http server. See web apps after installation at http://localhost:8080.  
+A binary snapshots are sometimes created usually in yearly (or less) bases.
+
 All the tools are provided as is - usually in best effort or beta version quality. If it works, than it works, if something is wrong, see logs, console logs, submit issue. 
 
 ## Motivation
 
-Vagrant tool automates configuration (port forwarding, secure ssh keys, shared folders) and provisioning of virtual machine. Thus preventing claims `works on my machine` or `doesn't work on my machine`. Virtual machine is a reference installation to compare with different environments.
+Vagrant tool automates configuration (port forwarding, secure ssh keys, shared folders) and provisioning of virtual machine and creates exemplar configuration. Thus preventing excuses: `works on my machine` or `doesn't work on my machine`. 
 
 ## Requirements
 
