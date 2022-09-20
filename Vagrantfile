@@ -7,7 +7,7 @@
 # you're doing.
 Vagrant.configure("2") do |config|
 
-  config.vm.box = "westlife-eu/scientific_7_gui"
+  config.vm.box = "westlife-eu/centos9"
   config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
 
   config.vm.provider "virtualbox" do |vb|
@@ -15,11 +15,11 @@ Vagrant.configure("2") do |config|
      vb.gui = true
   #
   #   # Customize the amount of memory on the VM:
-     vb.memory = "8192"
+     vb.memory = "4096"
      vb.cpus = "2"
      vb.customize ["modifyvm", :id, "--vram", "128"]
      vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]      
-     vb.name = "Bodylight-VirtualMachine-2109"
+     vb.name = "Bodylight-VirtualMachine"
   end
  
   puts "vagrant version:"
@@ -27,6 +27,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell",  path: "./scripts/bootstrap.sh"
   config.vm.provision "shell",  path: "./scripts/bootstrapjupyter.sh"
   config.vm.provision "shell",  path: "./scripts/bootstrapopenmodelica.sh"
+  config.vm.provision "shell",  path: "./scripts/bootstrapjupyterom.sh"
   config.vm.provision "shell",  path: "./scripts/bootstrapbodylight.sh"
   # config.vm.provision "shell",  path: "./scripts/bootstrapjulia.sh"
   config.vm.provision "shell",  path: "./scripts/bootstrapservices.sh"

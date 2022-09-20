@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -x
 # cd to desired directory
-
+cd /home/vagrant
 DIR=`pwd`
 VERSION='jupyter'
 if [ ! -d $DIR/$VERSION ]; then
@@ -22,7 +22,7 @@ if [ ! -d $DIR/$VERSION ]; then
   fi
 
 #sudo in case this script is executed after installation
-sudo yum install -y wget bzip2
+yum install -y wget bzip2
 
 echo install anaconda gui prerequisities
 yum -q -y install libXcomposite libXcursor libXi libXtst libXrandr alsa-lib mesa-libEGL libXdamage mesa-libGL libXScrnSaver
@@ -30,14 +30,14 @@ yum -q -y install libXcomposite libXcursor libXi libXtst libXrandr alsa-lib mesa
 if [ ! -f /vagrant/cache/anaconda.sh ]; then
   echo downloading anaconda
   mkdir -p /vagrant/cache/
-  wget --quiet https://repo.anaconda.com/archive/Anaconda3-2021.11-Linux-x86_64.sh -O /vagrant/cache/anaconda.sh
+  wget --quiet https://repo.anaconda.com/archive/Anaconda3-2022.05-Linux-x86_64.sh -O /vagrant/cache/anaconda.sh
 fi
 bash /vagrant/cache/anaconda.sh -b -p $DIR/$VERSION
 
-#$DIR/$VERSION/bin/conda activate
+# $DIR/$VERSION/bin/conda activate
 source $DIR/$VERSION/bin/activate
 # depended gcc c++
-yum -y install gcc c++
+yum -y "groupinstall "Development Tools"
 
 else
   echo Reusing Jupyter notebook and dependencies installed in $DIR/$VERSION
@@ -51,9 +51,4 @@ c.NotebookApp.iopub_msg_rate_limit = 1000000000
 c.NotebookApp.token = ''
 c.NotebookApp.password = '' 
 EOF
-head -n -2 /var/www/html/index.html > temp.txt ; mv temp.txt /var/www/html/index.html
-cat <<EOF >>/var/www/html/index.html
-<a href="/jupyter"><div><u>Jupyter notebook</u> <ul><li> <u>/jupyter</u></li><li class="small">Installed at <code>/home/vagrant/jupyter</code></li></ul></div></a>
-</body>
-</html>
-EOF
+

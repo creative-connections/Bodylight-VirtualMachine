@@ -1,17 +1,12 @@
 #!/usr/bin/env bash
 set -x
 
-#remove old git if present
-# yum -y remove git
-# install git 2.x
-#yum -y install https://packages.endpointdev.com/rhel/7/os/x86_64/endpoint-repo.x86_64.rpm
-#yum -y install https://packages.endpoint.com/rhel/7/os/x86_64/endpoint-repo-1.9-1.x86_64.rpm
-yum -y install git     
+#yum -y install git
 # nodejs
 #curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo bash -
-curl -sL https://rpm.nodesource.com/setup_14.x | bash -
-yum -y remove nodejs
-yum -y install nodejs
+#curl -sL https://rpm.nodesource.com/setup_14.x | bash -
+#yum -y remove nodejs
+#yum -y install nodejs
 
   cat <<EOF > /etc/httpd/conf.d/bodylight.conf
 Alias "/composer" "/home/vagrant/Bodylight.js-Composer/dist/"
@@ -78,43 +73,6 @@ Alias "/editor" "/home/vagrant/Bodylight-Editor/dist/"
   AllowOverride All
 </Directory>
 
-Alias "/vr" "/home/vagrant/VR/"
-<Directory "/home/vagrant/VR">
-  Header set Access-Control-Allow-Origin "*"
-  Require all granted
-  Options +Indexes +FollowSymLinks +IncludesNOEXEC
-  IndexOptions FancyIndexing HTMLTable
-  AllowOverride All
-</Directory>
-
-Alias "/web" "/home/vagrant/Bodylight-web/dist/"
-<Directory "/home/vagrant/Bodylight-web/dist">
-  Header set Access-Control-Allow-Origin "*"
-  Require all granted
-  Options +Indexes +FollowSymLinks +IncludesNOEXEC
-  IndexOptions FancyIndexing HTMLTable
-  AllowOverride All
-</Directory>
-
-Alias "/homepage" "/home/vagrant/creative-connections.github.io/"
-<Directory "/home/vagrant/creative-connections.github.io">
-  Header set Access-Control-Allow-Origin "*"
-  Require all granted
-  Options +Indexes +FollowSymLinks +IncludesNOEXEC
-  IndexOptions FancyIndexing HTMLTable
-  AllowOverride All
-</Directory>
-
-Alias "/docs" "/home/vagrant/Bodylight-docs/"
-<Directory "/home/vagrant/Bodylight-docs">
-  Header set Access-Control-Allow-Origin "*"
-  Require all granted
-  Options +Indexes +FollowSymLinks +IncludesNOEXEC
-  IndexOptions FancyIndexing HTMLTable
-  AllowOverride All
-</Directory>
-
-
 EOF
 service httpd reload
 echo setting bodylight-compiler service
@@ -136,10 +94,25 @@ WorkingDirectory=/home/vagrant/Bodylight.js-FMU-Compiler
 WantedBy=multi-user.target
 EOF
 #sudo -u vagrant $INSTALLDIR/bin/jupyter notebook --port $3 --no-browser &
-# required by bodylight-compiler worker
-yum -y install inotify-tools
 systemctl enable bodylight-compiler
 # systemctl start bodylight-compiler
+
+
+
+# add reference to index.html
+head -n -2 /var/www/html/index.html > temp.txt ; mv temp.txt /var/www/html/index.html
+cat <<EOF >>/var/www/html/index.html
+<a href="/composer/"><div><u>Bodylight.js Composer</u><ul><li><u>/composer/</u></li><li class="small">installed at <code>/home/vagrant/Bodylight.js-Composer</code></li></ul></div></a>
+<a href="/virtualbody/"><div><u>Virtual Body App</u><ul><li><u>/virtualbody/</u></li><li class="small">installed at <code>/home/vagrant/Bodylight-Scenarios</code></li></ul></div></a>
+<a href="/components/"><div><u>Web Components</u><ul><li><u>/components/</u></li><li class="small">installed at <code>/home/vagrant/aurelia-bodylight-plugin</code></li></ul></div></a>
+<a href="/webcomponents/"><div><u>Web Components Demo</u><ul><li><u>/webcomponents/</u></li><li class="small">installed at <code>/home/vagrant/Bodylight.js-Components</code></li></ul></div></a>
+<a href="/scenarios/"><div><u>Scenarios</u><ul><li><u>/scenarios/</u></li><li class="small">installed at <code>/home/vagrant/Bodylight-Scenarios</code></li></ul></div></a>
+<a href="/compiler/"><div><u>Bodylight.js Compiler</u><ul><li><u>/compiler/</u></li><li class="small">installed at <code>/home/vagrant/Bodylight.js-FMU-Compiler</code></li></ul></div></a>
+<a href="/editor/"><div><u>Bodylight Editor</u><ul><li><u>/editor/</u></li><li class="small">installed at <code>/home/vagrant/Bodylight-Editor</code></li></ul></div></a>
+
+</body>
+</html>
+EOF
 
 # install docker - for FMU-Compiler
 # yum -y install docker
@@ -161,18 +134,16 @@ git checkout dev-tomas
 npm install
 au build
 
-# fmu compiler
+# fmu compiler, TODO
 cd /home/vagrant
 git clone https://github.com/creative-connections/Bodylight.js-FMU-Compiler.git
 cd Bodylight.js-FMU-Compiler
-# allow cgi scripts to read/write input and output
-chmod ugo+rwx input output
 #sudo docker build -t bodylight.js.fmu.compiler "$(pwd)"
 # INSTALL emscripten
 cd /home/vagrant
 # git clone https://github.com/emscripten-core/emsdk.git
-wget -q https://github.com/emscripten-core/emsdk/archive/master.zip
-unzip master.zip 
+#wget -q https://github.com/emscripten-core/emsdk/archive/master.zip
+#unzip master.zip 
 cd emsdk-master
 ./emsdk install latest
 
@@ -183,20 +154,20 @@ cd emsdk-master
 # install some dependencies
 # python3 is already in conda
 # cmake
-sudo yum -y install cmake
+yum -y install cmake
 # install GLIBC 2.18
-#cd /home/vagrant
+cd /home/vagrant
 #wget -q https://ftp.gnu.org/gnu/glibc/glibc-2.18.tar.gz
 #tar -zxvf glibc-2.18.tar.gz
-#cd glibc-2.18 && mkdir build
-#cd build
-# ../configure --prefix=/usr --disable-profile --enable-add-ons --with-headers=/usr/include --with-binutils=/usr/bin
-#make
-#sudo make install
+cd glibc-2.18 && mkdir build
+cd build
+../configure --prefix=/usr --disable-profile --enable-add-ons --with-headers=/usr/include --with-binutils=/usr/bin
+make
+sudo make install
 
 sudo systemctl start bodylight-compiler
-#mkdir -p /input /output
-#chmod ugo+rwx /input /output
+sudo mkdir -p /input /output
+sudo chmod ugo+rwx /input /output
 
 # run docker compiler reads from /input - puts to /output
 # sudo docker run -d --name bodylight.js.fmu.compiler   -v $(pwd)/input:/input -v $(pwd)/output:/output --rm bodylight.js.fmu.compiler:latest bash worker.sh
@@ -205,12 +176,7 @@ sudo systemctl start bodylight-compiler
 cd /home/vagrant
 git clone https://github.com/creative-connections/Bodylight-Scenarios.git
 
-# VR
-cd /home/vagrant
-git clone https://github.com/creative-connections/VR.git
-
 # VirtualBody
-cd /home/vagrant
 git clone https://github.com/creative-connections/Bodylight-VirtualBody.git
 cd Bodylight-VirtualBody
 # cache gltf files used in
@@ -240,21 +206,6 @@ git clone https://github.com/creative-connections/Bodylight-Editor.git
 cd Bodylight-Editor
 npm install
 au build
-
-# docs
-cd /home/vagrant
-git clone https://github.com/creative-connections/Bodylight-docs.git
-
-# bodylight-web
-#cd /home/vagrant
-#git clone https://github.com/creative-connections/Bodylight-web.git
-#cd Bodylight-web
-#npm install
-#au build
-
-# creative github pages
-cd /home/vagrant
-git clone https://github.com/creative-connections/creative-connections.github.io.git
 
 chmod ugo+rx /home/vagrant
 
