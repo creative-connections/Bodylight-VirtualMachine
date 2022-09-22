@@ -56,9 +56,7 @@ cd Bodylight-VirtualMachine
 copy /Y Vagrantfile.preinstalled Vagrantfile
 ```
 
-* Download manually box file (4.6GB) from https://filedn.com/lHGc7w3H4jOpIe46u1nPt57/BodyligthVMImage/21.10/bodylightvm.box
-* place the box file next to the Vagrantfile
-* start vagrant up by 
+* start "vagrant up" by 
 ```bash
 vagrant up 
 ```
