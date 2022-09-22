@@ -6,7 +6,8 @@ set -x
 # install git 2.x
 #yum -y install https://packages.endpointdev.com/rhel/7/os/x86_64/endpoint-repo.x86_64.rpm
 #yum -y install https://packages.endpoint.com/rhel/7/os/x86_64/endpoint-repo-1.9-1.x86_64.rpm
-yum -y install git     
+# wget bzip2 required by emscripten part
+yum -y install git wget bzip2     
 # nodejs
 #curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo bash -
 curl -sL https://rpm.nodesource.com/setup_14.x | bash -

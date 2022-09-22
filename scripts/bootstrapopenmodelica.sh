@@ -34,5 +34,6 @@ yum -y install gcc-toolset-12
 
 yum install -y blas-devel lapack-devel lapack-static openblas-static
 # EL9 builds in progress uncomment when done - see status at https://build.openmodelica.org/rpm/el9/ and https://test.openmodelica.org/jenkins/blue/organizations/jenkins/LINUX_BUILDS/activity
-# wget -q https://build.openmodelica.org/rpm/el9/omc.repo -O /etc/yum.repos.d/omc.repo
-# yum install -y openmodelica-nightly 
+wget -q https://build.openmodelica.org/rpm/el9/omc.repo -O /etc/yum.repos.d/omc.repo
+yum install -y openmodelica-nightly
+ 
