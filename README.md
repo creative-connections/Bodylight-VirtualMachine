@@ -2,14 +2,14 @@
 [![DOI](https://zenodo.org/badge/203830641.svg)](https://zenodo.org/badge/latestdoi/203830641)
 # Virtual machine for Bodylight.js
 
-This repository contains scripts and configuration to create development environment for Bodylight tool chain. Base box is minimal Scientific Linux and Vagrant scripts prepare the rest of virtual machine with OpenModelica, Bodylight.js, Python 3.x, Julia, Jupyter, Anaconda, http server. See web apps after installation at http://localhost:8080.  
+This repository contains scripts and configuration to create development environment for Bodylight tool chain. Base box is minimal Scientific Linux (now CENTOS 9) and Vagrant scripts prepare the rest of virtual machine with OpenModelica, Bodylight.js, Python 3.x, Jupyter, Anaconda, http server. See web apps after installation at http://localhost:8080.  
 A binary snapshots are sometimes created usually in yearly (or less) bases.
 
 All the tools are provided as is - usually in best effort or beta version quality. If it works, than it works, if something is wrong, see logs, console logs, submit issue. 
 
 ## Motivation
 
-Vagrant tool automates configuration (port forwarding, secure ssh keys, shared folders) and provisioning of virtual machine and creates exemplar configuration. Thus preventing excuses: `works on my machine` or `doesn't work on my machine`. 
+Vagrant tool automates configuration (port forwarding, secure ssh keys, shared folders) and provisioning of virtual machine and creates exemplar configuration. Thus preventing excuses: `works on my machine`. 
 
 ## Requirements
 
@@ -56,9 +56,7 @@ cd Bodylight-VirtualMachine
 copy /Y Vagrantfile.preinstalled Vagrantfile
 ```
 
-* Download manually box file (4.6GB) from https://filedn.com/lHGc7w3H4jOpIe46u1nPt57/BodyligthVMImage/21.10/bodylightvm.box
-* place the box file next to the Vagrantfile
-* start vagrant up by 
+* start "vagrant up" by 
 ```bash
 vagrant up 
 ```
