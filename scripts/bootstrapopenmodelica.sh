@@ -3,7 +3,6 @@ set -x
 # bootstraps openmodelica and configures it with jupyter nb
 # openmodelica, blas-devel and lapack-devel required for OMC, it also installs gcc,c++,c compilers
 INSTALLDIR=/home/vagrant/jupyter
-wget -q https://build.openmodelica.org/rpm/el9/omc.repo -O /etc/yum.repos.d/omc.repo
 #wget -q http://mirror.stream.centos.org/9-stream/CRB/x86_64/os/media.repo -O /etc/yum.repos.d/media.repo
 # check if local rpm downloaded - install from them otherwise download and install
 # OM 1.14 deprecated
@@ -33,5 +32,7 @@ yum -y install gcc-toolset-12
 #this is installing from local cache downloaded before
 # yum -y install /vagrant/cache/*.rpm    
 
-yum install -y blas-devel lapack-devel lapack-static openblas-static omlib-none
-yum install -y openmodelica-nightly 
+yum install -y blas-devel lapack-devel lapack-static openblas-static
+# EL9 builds in progress uncomment when done - see status at https://build.openmodelica.org/rpm/el9/ and https://test.openmodelica.org/jenkins/blue/organizations/jenkins/LINUX_BUILDS/activity
+# wget -q https://build.openmodelica.org/rpm/el9/omc.repo -O /etc/yum.repos.d/omc.repo
+# yum install -y openmodelica-nightly 

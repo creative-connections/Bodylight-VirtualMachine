@@ -37,7 +37,7 @@ bash /vagrant/cache/anaconda.sh -b -p $DIR/$VERSION
 # $DIR/$VERSION/bin/conda activate
 source $DIR/$VERSION/bin/activate
 # depended gcc c++
-yum -y "groupinstall "Development Tools"
+yum -y groupinstall "Development Tools"
 
 else
   echo Reusing Jupyter notebook and dependencies installed in $DIR/$VERSION
@@ -51,4 +51,3 @@ c.NotebookApp.iopub_msg_rate_limit = 1000000000
 c.NotebookApp.token = ''
 c.NotebookApp.password = '' 
 EOF
-

@@ -19,7 +19,7 @@ Vagrant.configure("2") do |config|
      vb.cpus = "2"
      vb.customize ["modifyvm", :id, "--vram", "128"]
      vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]      
-     vb.name = "Bodylight-VirtualMachine"
+     # vb.name = "Bodylight-VirtualMachine"
   end
  
   puts "vagrant version:"
@@ -29,9 +29,8 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell",  path: "./scripts/bootstrapopenmodelica.sh"
   config.vm.provision "shell",  path: "./scripts/bootstrapjupyterom.sh"
   config.vm.provision "shell",  path: "./scripts/bootstrapbodylight.sh"
-  # config.vm.provision "shell",  path: "./scripts/bootstrapjulia.sh"
   config.vm.provision "shell",  path: "./scripts/bootstrapservices.sh"
-  # config.vm.provision "shell",  path: "./scripts/bootstrapjuliaservices.sh"
+  config.vm.provision "shell",  path: "./scripts/bootstraptools.sh"
   config.vm.synced_folder ".", "/vagrant"
   # vagrant data mapping is mapped up to one parent (..) 
   # uncomment next row and comment row bellow to map up to 2 parent directories (../..) 
