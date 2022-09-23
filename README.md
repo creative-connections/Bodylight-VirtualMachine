@@ -2,7 +2,7 @@
 [![DOI](https://zenodo.org/badge/203830641.svg)](https://zenodo.org/badge/latestdoi/203830641)
 # Virtual machine for Bodylight.js toolchain
 
-This repository contains scripts and configuration to create development environment for Bodylight tool chain. Base box is minimal CENTOS 9 Ctream (RHEL derivative) and Vagrant scripts prepare the rest of virtual machine with recent Bodylight.js, OpenModelica (nightli 1.20 build), Python 3.x, Jupyter, Anaconda, http server. See web apps after installation at http://localhost:8080.  
+This repository contains scripts and configuration to create development environment for Bodylight tool chain. Base box is minimal CENTOS 9 stream (RHEL derivative) and Vagrant scripts prepare the rest of virtual machine with recent Bodylight.js, OpenModelica (nightly 1.20 build), Python 3.x, Jupyter, Anaconda, http server. See web apps after installation at http://localhost:8080.  
 
 A binary snapshots are sometimes created usually in yearly (or less) bases.
 
@@ -19,23 +19,20 @@ Requirement:
 - OS: Any OS supported by VirtualBox and Vagrant tool (succesfully tested on Windows 7,Windows 10, Ubuntu 16.04, ...)
 - SW: Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads), succesfully tested with version Virtualbox 6.1.38 (( Note we experienced issue VERR_NEM_VM_CREATE_FAILED - need to disable Windows features (V-Host) and see howto setup Windows 10 at https://forums.virtualbox.org/viewtopic.php?f=6&t=93712))
 - SW: Install [Vagrant](https://www.vagrantup.com/downloads.html) tested version 2.2.6 and 2.2.9
-- SW: (optional, but recommended, but you may download master.zip instead directly - see notes after `git clone ...` bellow) Install [GIT](https://git-scm.com/download) any version. 
+- SW: GIT (EITHER Install [GIT](https://git-scm.com/download) any version OR you may download master.zip and unzip instead of `git clone` from the URLs bellow)
 
 Some OS has their own distribution of `vagrant`, `virtualbox` and `git`, so you may try to use it: `yum install vagrant virtualbox git` OR `apt install vagrant virtualbox git`.
 
-## Pre installation steps
+## Pre installation step (OPTIONAL)
 
-**(Optional)** This is not required, but recommended step to clone repository of demo Jupyter notebooks and/or Physiolibrary-models next to the Bodylight-VirtualMachine on host machine,
-it will appear as /vagrant_data in virtual machine and will be available for jupyter notebook after installation.
+This is not required step, it adds demo Jupyter notebooks and Physiolibrary-models next to the Bodylight-VirtualMachine on host machine.
+They will appear as /vagrant_data in virtual machine and will be available for jupyter notebook after installation.
+
 In command-line (Linux `xterm`, `bash` etc. for Windows `Start-> type 'cmd' -> choos 'Command Prompt'`) do:
 ```bash
 git clone https://github.com/creative-connections/Bodylight-notebooks.git
 git clone https://github.com/creative-connections/Physiolibrary-models.git
 ```
-If you do not have `git`, download and unzip master.ZIP from https://github.com/creative-connections/Bodylight-notebooks/archive/master.zip 
-and https://github.com/creative-connections/Physiolibrary-models/archive/master.zip
-
-
 ## Installation
 
 Choose either installation from sources or binary VM installation.
@@ -61,8 +58,6 @@ copy /Y Vagrantfile.preinstalled Vagrantfile
 ```bash
 vagrant up 
 ```
-
-
 ### From sources - default
 Clone repository with Virtual machine scripts and run vagrant up (In command-line (Linux `xterm`, `bash` etc. for Windows `Start-> type 'cmd' -> choos 'Command Prompt'`) do)
 ```bash
@@ -80,23 +75,6 @@ The first `vagrant up` takes 15-45 mins (or more depending on network speed) and
 ```
 
 1.5 GB of depended packages (OpenModelica, Anaconda, Julia) are downloaded and persisted in host `/cache` subdirectory during installation. 
-
-### From binary image
-## Update
-
-If you have previously installed VM and would like to update or reinstall from scratch, do:
-  1. Save any documents/data from VM to shared folder `/vagrant` folder. Other files and data will be erased.
-  2. Then do following:
-
-```bash
-vagrant destroy
-vagrant box update
-git pull
-# if you made some local changes to Vagrantfile - git pull may fail, 
-# try: git stash;git pull;git stash apply
-vagrant up
-```
-This will clean VM,checkand update the base box and install the software again - if `/cache` is present from previous installation it will use most packages from it rather to download again from Internet repositories.
 
 ## After installation
 
@@ -129,6 +107,22 @@ vagrant reload
 ```
 The second and other `vagrant up`is rapid and should take couple of seconds, because time consuming provisioning (bootstrap scripts) is already done.
   
+## Update
+
+If you have previously installed VM and would like to update or reinstall from scratch, do:
+  1. Save any documents/data from VM to shared folder `/vagrant` folder. Other files and data will be erased.
+  2. Then do following:
+
+```bash
+vagrant destroy
+vagrant box update
+git pull
+# if you made some local changes to Vagrantfile - git pull may fail, 
+# try: git stash;git pull;git stash apply
+vagrant up
+```
+This will clean VM,checkand update the base box and install the software again - if `/cache` is present from previous installation it will use most packages from it rather to download again from Internet repositories.
+
 ## Bootstrap scripts
 
 Installation scripts are preserved in `/scripts` directory, they are launched only when `vagrant up`is made first or when provisioning is explicitly requested by `vagrant up --provision`.
@@ -154,7 +148,7 @@ To destroy VM and remove all VM files do the following. The files stored in shar
 vagrant destroy
 ```
 
-There are preserved OpenModelica and Python (Anaconda) installation binaries in `/cache` directory. Delete cache if you don't need it anymore 
+There are preserved installation binaries in `/cache` directory. Delete cache if you don't need it anymore 
 ```bash
 rm -rf cache
 ```
@@ -167,4 +161,3 @@ References:
 * [4] virtualbox https://www.virtualbox.com
 * [5] Anaconda https://anaconda.org/
 * [6] GIT https://git-scm.com
-* 
