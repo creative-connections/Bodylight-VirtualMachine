@@ -1,8 +1,9 @@
 [![Build Status](https://travis-ci.org//creative-connections/Bodylight-VirtualMachine.svg?branch=master)](https://travis-ci.org//creative-connections/Bodylight-VirtualMachine)
 [![DOI](https://zenodo.org/badge/203830641.svg)](https://zenodo.org/badge/latestdoi/203830641)
-# Virtual machine for Bodylight.js
+# Virtual machine for Bodylight.js toolchain
 
-This repository contains scripts and configuration to create development environment for Bodylight tool chain. Base box is minimal Scientific Linux (now CENTOS 9) and Vagrant scripts prepare the rest of virtual machine with OpenModelica, Bodylight.js, Python 3.x, Jupyter, Anaconda, http server. See web apps after installation at http://localhost:8080.  
+This repository contains scripts and configuration to create development environment for Bodylight tool chain. Base box is minimal CENTOS 9 Ctream (RHEL derivative) and Vagrant scripts prepare the rest of virtual machine with recent Bodylight.js, OpenModelica (nightli 1.20 build), Python 3.x, Jupyter, Anaconda, http server. See web apps after installation at http://localhost:8080.  
+
 A binary snapshots are sometimes created usually in yearly (or less) bases.
 
 All the tools are provided as is - usually in best effort or beta version quality. If it works, than it works, if something is wrong, see logs, console logs, submit issue. 
@@ -16,7 +17,7 @@ Vagrant tool automates configuration (port forwarding, secure ssh keys, shared f
 Requirement: 
 - HW: minimum 1 CPU, 4 GB RAM, min 5GB disk space.
 - OS: Any OS supported by VirtualBox and Vagrant tool (succesfully tested on Windows 7,Windows 10, Ubuntu 16.04, ...)
-- SW: Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads), succesfully tested with version Virtualbox 6.0.14 and 6.1.8 (( Note we experienced issue VERR_NEM_VM_CREATE_FAILED - need to disable Windows features (V-Host) and see howto setup Windows 10 at https://forums.virtualbox.org/viewtopic.php?f=6&t=93712))
+- SW: Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads), succesfully tested with version Virtualbox 6.1.38 (( Note we experienced issue VERR_NEM_VM_CREATE_FAILED - need to disable Windows features (V-Host) and see howto setup Windows 10 at https://forums.virtualbox.org/viewtopic.php?f=6&t=93712))
 - SW: Install [Vagrant](https://www.vagrantup.com/downloads.html) tested version 2.2.6 and 2.2.9
 - SW: (optional, but recommended, but you may download master.zip instead directly - see notes after `git clone ...` bellow) Install [GIT](https://git-scm.com/download) any version. 
 
