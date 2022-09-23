@@ -8,37 +8,51 @@
   <!-- imported CSS are concatenated and added automatically -->
   <script defer src="bodylightweb.bundle.js"></script></head>
 <body aurelia-app="main">
-<bd-head><span class="w3-ceter">Bodylight Virtual Machine</span></bd-head>
-<bd-panels title="Installed apps and modules">
-  <bd-panel href="/jupyter" title="Jupyter&nbsp;notebook">Available at /jupyter<br/>Installed in anaconda environment in /home/vagrant/jupyter</bd-panel>
-  <bd-panel href="" title="OpenModelica">
-    Installed from RHEL distribution<pre>OMEdit</pre>. Notebook type available in Jupyter.
-  </bd-panel>
-
-  <bd-panel href="/composer" title="Bodylight.js Composer">
-    Composer for Bodylight.js v1.0
-  </bd-panel>
-  <bd-panel href="/virtualbody" title="Virtual Body">
-    Virtualbody app /home/vagrant/Bodylight-VirtualBody
-  </bd-panel>
-  <bd-panel href="/components" title="Web Components source - Aurelia">
-    Web components source code and docs /home/vagrant/aurelia-bodylight-plugin
-  </bd-panel>
-  <bd-panel href="/webcomponents" title="Web Components - compiled demo">
-    Web components compiled /home/vagrant/Bodylight.js-Components
-  </bd-panel>
-  <bd-panel href="/scenarios" title="Egolem online - scenarios">
-    Egolem online scenarios and apps at /home/vagrant/Bodylight-Scenarios
-  </bd-panel>
-  <bd-panel href="/compiler" title="Bodylight.js Compiler">
-    Compiler from FMU to JS (WebAssembly)
-  </bd-panel>
-  <bd-panel href="/editor" title="Bodylight Editor">
+<bd-head><div class="w3-center">Bodylight Virtual Machine</div></bd-head>
+<bd-panels>
+  <bd-panel2 href="/compiler" title="Bodylight.js Compiler">
+    Compiler from FMU to JS (WebAssembly)<br/>
+    installed at /home/vagrant/Bodylight.js-FMU-Compiler
+  </bd-panel2>
+  <bd-panel2 href="/editor" title="Bodylight Editor">
     installed at /home/vagrant/Bodylight-Editor
-  </bd-panel>
-  <bd-panel href="/vr" title="Virtual Reality">
+  </bd-panel2>
+
+  <bd-panel2 href="/components" title="Bodylight.js components">
+    Aurelia-plugin<br/>
+    Installed at /home/vagrant/aurelia-bodylight-plugin
+  </bd-panel2>
+
+  <bd-panel2 href="/webcomponents" title="Bodylight.js components">
+    standard web components<br/>
+    framework agnostic<br/>
+    compiled at /home/vagrant/Bodylight.js-Components
+  </bd-panel2>
+
+  <bd-panel2 href="/composer" title="Bodylight.js Composer">
+    Composer for Bodylight.js v1.0</br>
+    installed at /home/vagrant/Bodylight.js-Composer
+  </bd-panel2>
+  <bd-panel2 href="/scenarios" title="Egolem online - scenarios">
+    Egolem online scenarios and apps at /home/vagrant/Bodylight-Scenarios
+  </bd-panel2>
+  <bd-panel2 href="/vr" title="Virtual Reality">
     Virtualbody app /home/vagrant/VR
-  </bd-panel>
+  </bd-panel2>
+  <bd-panel2 href="/virtualbody" title="Virtual Body">
+    Virtualbody app /home/vagrant/Bodylight-VirtualBody
+  </bd-panel2>
+
+  <bd-panel2 href="/jupyter" title="Jupyter&nbsp;notebook">
+    complete data science environment<br/>
+    Installed in /home/vagrant/jupyter
+  </bd-panel2>
+  <bd-panel2 href="" title="OpenModelica">
+    complete Modelica environment<br/>
+    Installed into distribution, launch with <code>OMEdit</code>.<br/>
+    Notebook type available in Jupyter.
+  </bd-panel2>
+
 
 </bd-panels>
 <bd-footer2></bd-footer2>
