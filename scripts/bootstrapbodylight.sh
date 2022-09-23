@@ -176,7 +176,7 @@ au build
 
 # fmu compiler
 cd /home/vagrant
-git clone https://github.com/creative-connections/Bodylight.js-FMU-Compiler.git
+git clone $GIT_PREFIX/Bodylight.js-FMU-Compiler.git
 cd Bodylight.js-FMU-Compiler
 # allow cgi scripts to read/write input and output
 chmod ugo+rwx input output
@@ -216,15 +216,15 @@ sudo systemctl start bodylight-compiler
 
 # Scenarios
 cd /home/vagrant
-git clone https://github.com/creative-connections/Bodylight-Scenarios.git
+git clone $GIT_PREFIX/Bodylight-Scenarios.git
 
 # VR
 cd /home/vagrant
-git clone https://github.com/creative-connections/VR.git
+git clone $GIT_PREFIX/VR.git
 
 # VirtualBody
 cd /home/vagrant
-git clone https://github.com/creative-connections/Bodylight-VirtualBody.git
+git clone $GIT_PREFIX/Bodylight-VirtualBody.git
 cd Bodylight-VirtualBody
 # cache gltf files used in
 mkdir -p static/models
@@ -235,39 +235,39 @@ au build
 
 # components
 cd /home/vagrant
-git clone https://github.com/creative-connections/aurelia-bodylight-plugin.git
+git clone $GIT_PREFIX/aurelia-bodylight-plugin.git
 cd aurelia-bodylight-plugin
 npm install
 au build
 
 # webcomponents
 cd /home/vagrant
-git clone https://github.com/creative-connections/Bodylight.js-Components.git
+git clone $GIT_PREFIX/Bodylight.js-Components.git
 cd Bodylight.js-Components
 npm install
 au build
 
 # editor
 cd /home/vagrant
-git clone https://github.com/creative-connections/Bodylight-Editor.git
+git clone $GIT_PREFIX/Bodylight-Editor.git
 cd Bodylight-Editor
 npm install
 au build
 
 # docs
 cd /home/vagrant
-git clone https://github.com/creative-connections/Bodylight-docs.git
+git clone $GIT_PREFIX/Bodylight-docs.git
 
 # bodylight-web
 #cd /home/vagrant
-#git clone https://github.com/creative-connections/Bodylight-web.git
+#git clone $GIT_PREFIX/Bodylight-web.git
 #cd Bodylight-web
 #npm install
 #au build
 
 # creative github pages
 cd /home/vagrant
-git clone https://github.com/creative-connections/creative-connections.github.io.git
+git clone $GIT_PREFIX/creative-connections.github.io.git
 
 chmod ugo+rx /home/vagrant
 

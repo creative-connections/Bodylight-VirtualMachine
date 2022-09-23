@@ -7,7 +7,8 @@ set -x
 #chmod -R 644 /var/www/html
 #find /var/www/html -type d -exec chmod ugo+rx {} \;
 
-# centos 9 update - epel already in base VM
+# centos 9 update - epel already in base VM created in westlife-eu/centos9
+yum -y install epel-release
 #yum -y install epel-release
 #yum-config-manager --save --setopt=epel/x86_64/metalink.skip_if_unavailable=true
 #yum repolist
