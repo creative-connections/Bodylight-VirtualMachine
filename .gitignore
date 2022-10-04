@@ -2,3 +2,5 @@ anaconda.sh
 Miniconda3-*.sh
 .vagrant
 bootstrappsychotestenv.sh
+id_rsa
+id_rsa.pub
