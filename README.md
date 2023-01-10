@@ -107,11 +107,12 @@ vagrant reload
 ```
 The second and other `vagrant up`is rapid and should take couple of seconds, because time consuming provisioning (bootstrap scripts) is already done.
   
-## Update
+## Update VM
 
 If you have previously installed VM and would like to update or reinstall from scratch, do:
-  1. Save any documents/data from VM to shared folder `/vagrant` folder. Other files and data will be erased.
-  2. Then do following:
+  1. Save any documents/data from VM to shared folder `/vagrant` folder. These are available and preserved in host. Other files and data will be erased.
+  2. Consider to delete `/cache` directory in host machine. It contains some installation packages, if it is not too old you may preserve it and go to next step. 
+  3. Then do following:
 
 ```bash
 vagrant destroy
@@ -121,7 +122,7 @@ git pull
 # try: git stash;git pull;git stash apply
 vagrant up
 ```
-This will clean VM,checkand update the base box and install the software again - if `/cache` is present from previous installation it will use most packages from it rather to download again from Internet repositories.
+This will clean VM,check and update the base box and install the software again - if `/cache` is present from previous installation it will use most packages from it rather to download again from Internet repositories. 
 
 ## Bootstrap scripts
 
