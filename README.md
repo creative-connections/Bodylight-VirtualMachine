@@ -90,6 +90,7 @@ The default installation contains these applications, some available from web in
   * Bodylight.js-Composer - refer http://localhost:8080/composer/
   * Bodylight-Scenarios - Scenarios written in MD using web components http://localhost:8080/scenarios/
   * Bodylight-VirtualBody - Virtualbody using WebGL http://localhost:8080/virtualbody/
+  * Visual Studio Code - Lightweight IDE for Linux - just type `code` within terminal window [7]
   
 You may access virtual desktop using VirtualBox capabilities or you may access using `vagrant ssh`.
 
@@ -162,3 +163,4 @@ References:
 * [4] virtualbox https://www.virtualbox.com
 * [5] Anaconda https://anaconda.org/
 * [6] GIT https://git-scm.com
+* [7] Visual Studio Code https://code.visualstudio.com/
