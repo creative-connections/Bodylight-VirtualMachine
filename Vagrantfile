@@ -25,9 +25,9 @@ Vagrant.configure("2") do |config|
   puts "vagrant version:"
   puts Vagrant::VERSION
   config.vm.provision "shell",  path: "./scripts/bootstrap.sh"
-  config.vm.provision "shell",  path: "./scripts/bootstrapjupyter.sh"
-  config.vm.provision "shell",  path: "./scripts/bootstrapopenmodelica.sh"
-  config.vm.provision "shell",  path: "./scripts/bootstrapjupyterom.sh"
+  #config.vm.provision "shell",  path: "./scripts/bootstrapjupyter.sh"
+  #config.vm.provision "shell",  path: "./scripts/bootstrapopenmodelica.sh"
+  #config.vm.provision "shell",  path: "./scripts/bootstrapjupyterom.sh"
   config.vm.provision "shell",  path: "./scripts/bootstrapbodylight.sh"
   config.vm.provision "shell",  path: "./scripts/bootstrapservices.sh"
   config.vm.provision "shell",  path: "./scripts/bootstraptools.sh"
