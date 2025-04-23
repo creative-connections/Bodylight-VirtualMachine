@@ -11,6 +11,8 @@ yum -y install git wget bzip2
 # nodejs
 #curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo bash -
 curl -sL https://rpm.nodesource.com/setup_14.x | bash -
+#curl -sL https://rpm.nodesource.com/setup_22.x | bash -
+#curl -sL https://rpm.nodesource.com/setup_18.x | bash -
 yum -y remove nodejs
 yum -y install nodejs
 
@@ -234,11 +236,11 @@ npm install
 au build
 
 # components
-cd /home/vagrant
-git clone $GIT_PREFIX/aurelia-bodylight-plugin.git
-cd aurelia-bodylight-plugin
-npm install
-au build
+#cd /home/vagrant
+#git clone $GIT_PREFIX/aurelia-bodylight-plugin.git
+#cd aurelia-bodylight-plugin
+#npm install
+#au build
 
 # webcomponents
 cd /home/vagrant
